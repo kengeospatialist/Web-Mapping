@@ -10,7 +10,10 @@ Welcome to the Leaflet Tutorial repository! This project is created by Kengeospa
 4. [Polygons and Circles](Web%20Mapping%20Tutorial/4-polygons-and-circles.html)
 5. [Working with GeoJSON](Web%20Mapping%20Tutorial/5-working-with-geojson.html)
 6. [User Interactions](Web%20Mapping%20Tutorial/6-user-interaction.html)
-7. [Choropleth Map](Web%20Mapping%20Tutorial/7-choropleth-map.html)
+7. [Kenya Population Choropleth Map](Web%20Mapping%20Tutorial/7-choropleth-map.html)
+8. [Marker Clustering Map](Marker-Clustering/7-choropleth-map.html)
+9. [US Crime Trend](US%20Crime%20Trend/index.html)
+10. [US Wild Fire](USA%20Wildfires%20-%20Heat%20Maps/index.html)
 
 ## Getting Started
 
