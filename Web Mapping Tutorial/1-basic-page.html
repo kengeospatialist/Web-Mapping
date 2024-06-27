@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Page</title>
+    <link href="prims/prism.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Leaflet Tutorial</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Tutorials</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="1-basic-page.html">
+                                1 Introduction
+                            </a>
+                            <a class="dropdown-item" href="2-basic-map.html">
+                                2 Basic Map
+                            </a>
+                            <a class="dropdown-item" href="3-markers-and-popups.html">
+                                3 Markers and Popups
+                            </a>
+                            <a class="dropdown-item" href="4-polygons-and-circles.html">
+                                4 Polygons and Circles
+                            </a>
+                            <a class="dropdown-item" href="5-working-with-geojson.html">
+                                5 Working with GeoJSON
+                            </a>
+                            <a class="dropdown-item" href="6-user-interaction.html">
+                                6 User Interactions
+                            </a>
+                            <a class="dropdown-item" href="7-choropleth-map.html">
+                                7  choropleth map
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h4>Introduction to HTML</h4>
+        <p>HTML (HyperText Markup Language) is the standard language used to create web pages. It structures content on the web and consists of various elements that tell the browser how to display content</p>
+        <p>An HTML element is defined by a start tag(&lt;), content, and an end tag(&gt;).</p>
+        <p><b>DOCTYPE Declaration</b> The &lt;!DOCTYPE html&gt; declaration defines the document type and version of HTML. It ensures the browser renders the page correctly.</p>
+        <p>The <b>Head Element</b> &lt;head&gt; element contains meta-information about the HTML document, such as the title, character set, and links to external resources (like stylesheets and scripts).</p>
+        <p>The <b>Body Element</b> &lt;body&gt; element contains the content of the HTML document. This includes text, images, links, tables, and other elements that are displayed on the webpage.</p>
+        <p>The <b>Script Element</b> &lt;script&gt; element is used to embed or reference executable scripts. This is typically used for client-side JavaScript to add interactivity to the webpage.</p>
+        <pre>
+            <code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Simple HTML Document&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Application&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+    &lt;img src=&quot;image.jpg&quot; alt=&quot;Description of image&quot;&gt;
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code>
+        </pre>
+        <h4>Designing the layout with Bootstrap</h4>
+        <p><a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap</a> is a popular framework for building responsive and attractive web layouts quickly. It provides a set of CSS classes and JavaScript components that can be easily integrated into your HTML.</p>
+        <h5>1: Setting Up Bootstrap</h5>
+        <p>To include Bootstrap in your HTML file, you should add the following &lt;link&gt; tag in the &lt;head$gt; section of your HTML document:</p>
+        <pre>
+            <code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Bootstrap Layout Tutorial&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+            </code>
+        </pre>
+        <h5>2: Creating a Navbar</h5>
+        <p>Bootstrap documentation offers a pre-styled navbar component that you can use for navigation.</p>
+        <pre>
+            <code class="language-html">
+&lt;nav class=&quot;navbar navbar-expand-lg navbar-light bg-light&quot;&gt;
+  &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Your Logo&lt;/a&gt;
+  &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarNav&quot; aria-controls=&quot;navbarNav&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
+    &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarNav&quot;&gt;
+    &lt;ul class=&quot;navbar-nav ml-auto&quot;&gt;
+      &lt;li class=&quot;nav-item active&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Home &lt;span class=&quot;sr-only&quot;&gt;(current)&lt;/span&gt;&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Services&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;nav-item&quot;&gt;
+        &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;    
+            </code>
+        </pre>
+        <h5>3: Creating a Layout with Grid System</h5>
+        <p>Bootstrap's grid system helps you create responsive layouts easily though the use of row and col classes. The code provided here will form the dashboard for our up bases on Kenya Population data available at <a href="https://data.humdata.org/dataset/kenya-population-per-county-from-census-report-2019">OCHA Service</a></p>
+
+        <pre>
+            <code class="language-html">
+&lt;div class=&quot;container mt-3&quot;&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;div class=&quot;card text-white bg-primary mb-3&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;h5 class=&quot;card-title&quot;&gt;Total Population&lt;/h5&gt;
+                &lt;p class=&quot;card-text&quot;&gt;48 million&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;div class=&quot;card text-white bg-success mb-3&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;h5 class=&quot;card-title&quot;&gt;Male Population&lt;/h5&gt;
+                &lt;p class=&quot;card-text&quot;&gt;23.7 million&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-4&quot;&gt;
+        &lt;div class=&quot;card text-white bg-info mb-3&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;h5 class=&quot;card-title&quot;&gt;Female Population&lt;/h5&gt;
+                &lt;p class=&quot;card-text&quot;&gt;24.2 million&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-12&quot;&gt;
+        &lt;div class=&quot;card mb-3&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;h5 class=&quot;card-title&quot;&gt;Population Distribution Chart&lt;/h5&gt;
+                &lt;div id=&quot;chart&quot;&gt;Placeholder for Chart&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            </code>
+        </pre>
+        <h5>4: Adding Styles and JavaScript</h5>
+        <p>The script tag is use to handle inclide scripting language for additional interaction majorly JavaScript. provides JavaScript plugins for interactive components like modals, tooltips, and carousels. Include the following scripts at the bottom of your HTML document, just before the closing &lt;/body&gt; tag:</p>
+        <pre>
+            <code class="language-html">
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js&quot; integrity=&quot;sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js&quot; integrity=&quot;sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+            </code>
+        </pre>
+        <!--<pre>
+            <code class="language-html">
+            </code>
+        </pre>-->
+        <h5>5: Expected Output</h5>
+        <p>The expected output of this tutorial is shown below</p> 
+        <iframe src="1-basic-page-index.html" style="width: 100%; height: 500px; border: 1px solid black;" title="Iframe Example"></iframe>
+        
+    </div>
+
+
+    <!-- (Optional) - Place this js code after initializing bootstrap.min.js or bootstrap.bundle.min.js -->
+    <script>
+        var triggerEl = document.querySelector("#navId a");
+        bootstrap.Tab.getInstance(triggerEl).show(); // Select tab by name
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+        <script src="prims/prism.js"></script>
+</body>
+
+</html>

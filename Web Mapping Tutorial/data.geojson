@@ -1,0 +1,130 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [36.8219, -1.2921]
+        },
+        "properties": {
+            "name": "Nairobi CBD"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [36.8431, -1.2867]
+        },
+        "properties": {
+            "name": "Westlands"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [36.7570, -1.3067]
+        },
+        "properties": {
+            "name": "Athi River"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [
+            [36.8219, -1.2921],
+            [36.8431, -1.2867],
+            [36.7570, -1.3067]
+            ]
+        },
+        "properties": {
+            "name": "Major Roads"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [
+            [36.7925, -1.2792],
+            [36.8100, -1.2955],
+            [36.7725, -1.3119]
+            ]
+        },
+        "properties": {
+            "name": "Railway Lines"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [
+            [36.8100, -1.2955],
+            [36.8575, -1.2769],
+            [36.8025, -1.3208]
+            ]
+        },
+        "properties": {
+            "name": "Rivers"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+                [36.8184, -1.2787],
+                [36.8281, -1.2664],
+                [36.8452, -1.2751],
+                [36.8239, -1.2924],
+                [36.8184, -1.2787]
+            ]
+            ]
+        },
+        "properties": {
+            "name": "Central Park"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+                [36.8212, -1.3079],
+                [36.8436, -1.3030],
+                [36.8309, -1.3201],
+                [36.8212, -1.3079]
+            ]
+            ]
+        },
+        "properties": {
+            "name": "Ngong Hills"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+                [36.7692, -1.2688],
+                [36.7883, -1.2524],
+                [36.8104, -1.2691],
+                [36.7860, -1.2932],
+                [36.7692, -1.2688]
+            ]
+            ]
+        },
+        "properties": {
+            "name": "Nairobi National Park"
+        }
+        }
+    ]
+}

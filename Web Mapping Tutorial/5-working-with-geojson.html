@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Map</title>
+    <link href="prims/prism.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Leaflet Tutorial</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Tutorials</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="1-basic-page.html">
+                                1 Introduction
+                            </a>
+                            <a class="dropdown-item" href="2-basic-map.html">
+                                2 Basic Map
+                            </a>
+                            <a class="dropdown-item" href="3-markers-and-popups.html">
+                                3 Markers and Popups
+                            </a>
+                            <a class="dropdown-item" href="4-polygons-and-circles.html">
+                                4 Polygons and Circles
+                            </a>
+                            <a class="dropdown-item" href="5-working-with-geojson.html">
+                                5 Working with GeoJSON
+                            </a>
+                            <a class="dropdown-item" href="6-user-interaction.html">
+                                6 User Interactions
+                            </a>
+                            <a class="dropdown-item" href="7-choropleth-map.html">
+                                7 choropleth map
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <p>
+            Creating interactive maps with Leaflet using GeoJSON provides a powerful way to display and interact with
+            geographic data. GeoJSON, a format for encoding a variety of geographic data structures using JavaScript
+            Object Notation (JSON), supports points, lines, polygons, and more complex geometries. This tutorial will
+            guide you through integrating GeoJSON data into a Leaflet map, covering its options and demonstrating with a
+            sample GeoJSON dataset
+        </p>
+        <h5>2: Creating Your GeoJSON Data</h5>
+        <p>
+            Create a data.geojson file in the same directory as your HTML file. Populate it with a sample GeoJSON
+            dataset containing points, lines, and polygons.
+        </p>
+        <pre>
+            <code class="language-javascript">
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [36.8219, -1.2921]
+        },
+        "properties": {
+            "name": "Nairobi CBD"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [36.8431, -1.2867]
+        },
+        "properties": {
+            "name": "Westlands"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [36.7570, -1.3067]
+        },
+        "properties": {
+            "name": "Athi River"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [
+            [36.8219, -1.2921],
+            [36.8431, -1.2867],
+            [36.7570, -1.3067]
+            ]
+        },
+        "properties": {
+            "name": "Major Roads"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [
+            [36.7925, -1.2792],
+            [36.8100, -1.2955],
+            [36.7725, -1.3119]
+            ]
+        },
+        "properties": {
+            "name": "Railway Lines"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": [
+            [36.8100, -1.2955],
+            [36.8575, -1.2769],
+            [36.8025, -1.3208]
+            ]
+        },
+        "properties": {
+            "name": "Rivers"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+                [36.8184, -1.2787],
+                [36.8281, -1.2664],
+                [36.8452, -1.2751],
+                [36.8239, -1.2924],
+                [36.8184, -1.2787]
+            ]
+            ]
+        },
+        "properties": {
+            "name": "Central Park"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+                [36.8212, -1.3079],
+                [36.8436, -1.3030],
+                [36.8309, -1.3201],
+                [36.8212, -1.3079]
+            ]
+            ]
+        },
+        "properties": {
+            "name": "Ngong Hills"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+                [36.7692, -1.2688],
+                [36.7883, -1.2524],
+                [36.8104, -1.2691],
+                [36.7860, -1.2932],
+                [36.7692, -1.2688]
+            ]
+            ]
+        },
+        "properties": {
+            "name": "Nairobi National Park"
+        }
+        }
+    ]
+}
+            </code>
+        </pre>
+        <h5>2: Loading GeoJSON Data onto the Map</h5>
+        <p>Loading GeoJSON data onto a Leaflet map involves fetching the data from a GeoJSON file or endpoint and then
+            displaying it as map layers. To dynamically load GeoJSON data onto a Leaflet map, initialize a GeoJSON layer
+            (geojsonLayer) with null data. Customize its rendering using options like pointToLayer for markers and style
+            for lines and polygons. Define interactive behaviors using onEachFeature to add popups based on feature
+            properties. Fetch the GeoJSON data asynchronously using fetch('data.geojson'), parse the JSON response with
+            response.json(), and then use .then to handle the data. Finally, update the geojsonLayer with the fetched
+            data using geojsonLayer.addData(data);. This method ensures efficient and flexible integration of geographic
+            data, allowing for dynamic updates and interactive visualization on the Leaflet map.<br><a
+                href="https://leafletjs.com/reference.html#geojson" target="_blank">GeoJSON Documentation</a>
+        </p>
+        <pre>
+            <code class="language-javascript">
+var geojsonLayer = L.geoJSON(null, {
+    //this function is used to handle point
+    pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, { radius: 8, fillColor: "blue", color: "#000", weight: 1, opacity: 1, fillOpacity: 0.8 });
+    },
+    //the function is use to handle both polygons and polylines
+    style: function(feature) {
+        return { color: "red", weight: 2, opacity: 1 };//hence both lines and polygons are symbolise in red
+    },
+    onEachFeature: function(feature, layer) {
+        //this loops on every feature and the code here is executed
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup(feature.properties.name);
+        }
+    }
+}).addTo(map);
+
+// Load GeoJSON data
+fetch('data.geojson')
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        geojsonLayer.addData(data); //add data to geojson layer
+    });
+            </code>
+        </pre>
+        <h5>3: Expected Output</h5>
+        <p>The expected output of this tutorial is shown below</p>
+        <iframe src="5-working-with-geojson-index.html" style="width: 100%; height: 500px; border: 1px solid black;"
+            title="Iframe Example"></iframe>
+        <h5>4: Conclusion</h5>
+        <p>In conclusion, integrating GeoJSON data with Leaflet provides a powerful way to create dynamic and
+            interactive maps on the web. Throughout this tutorial, we've explored how to define GeoJSON layers,
+            customize their appearance and behavior, and dynamically load data from external sources. By leveraging
+            Leaflet's capabilities for rendering points, lines, and polygons with styles and interactive features such
+            as popups, you can build engaging map visualizations tailored to various geographic datasets. Whether
+            displaying points of interest, routes, or detailed boundaries, Leaflet's flexibility and ease of use make it
+            an ideal choice for developers looking to enhance their web applications with rich, location-based
+            functionalities.</p>
+    </div>
+
+    <!-- (Optional) - Place this js code after initializing bootstrap.min.js or bootstrap.bundle.min.js -->
+    <script>
+        var triggerEl = document.querySelector("#navId a");
+        bootstrap.Tab.getInstance(triggerEl).show(); // Select tab by name
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="prims/prism.js"></script>
+</body>
+
+</html>

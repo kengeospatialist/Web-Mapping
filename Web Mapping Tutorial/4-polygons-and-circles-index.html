@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Map Tutorial</title>
+    <!--Include Boostrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <!--Include Leaflet CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+</head>
+
+<body>
+    <!--Naviagation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Your Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <button id="locate-btn" class="btn btn-primary">Locate Me</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="map" style="height:400px;"></div>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([-1.2978553,36.8767045], 13);
+
+        // Add a tile layer
+        var baseOSM =L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Function to locate the user
+        function locateUser() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    var userLocation = L.marker([lat, lng]).addTo(map)
+                        .bindPopup("You are here!").openPopup();
+                    map.setView([lat, lng], 13);
+                }, function () {
+                    alert("Location access denied by the user.");
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Add event listener to the button
+        document.getElementById('locate-btn').addEventListener('click', locateUser);
+
+        //add markers
+        var museumMarker = L.marker([-1.276111, 36.808611]).addTo(map);
+
+        var customIcon = L.icon({
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6e/678111-map-marker-512.png',
+    iconSize: [38, 38], // size of the icon
+    iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -38] // point from which the popup should open relative to the iconAnchor
+});
+
+var customMarker = L.marker([-1.286389, 36.817223], { icon: customIcon }).addTo(map);
+
+var divIcon = L.divIcon({
+    html: '<div style="background-color: red; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">M</div>',
+    className: 'custom-div-icon',
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -12]
+});
+
+var divMarker = L.marker([-1.292066, 36.821945], { icon: divIcon }).addTo(map);
+
+museumMarker.bindPopup("<b>Nairobi National Museum</b><br>A place to explore Kenya's rich heritage.").openPopup();
+customMarker.bindPopup("<b>Uhuru Park</b><br>A large recreational park in Nairobi.");
+divMarker.bindPopup("<b>Kenya International Conference Centre</b><br>A 28-story building located in Nairobi's central business district.");
+    
+var latlngs = [
+    [-1.3313454696562417, 36.88813496154731],
+    [-1.3299619385201567, 36.88651872290612],
+    [-1.3292752219963546, 36.88527623950665],
+    [-1.3289863988807014, 36.88451382537224],
+    [-1.3287565213625072, 36.883845906274644],
+    [-1.328548536920806, 36.8829151993352],
+    [-1.3284171783189151, 36.88173265404819],
+    [-1.3283952852172547, 36.880911442043725],
+    [-1.3285156972707028, 36.87967414928926],
+    [-1.3295891355439409, 36.871953084905726],
+    [-1.3299134265346595, 36.86952625430561],
+    [-1.3307837647020335, 36.86286860141212],
+    [-1.3310601233895625, 36.86109617636811],
+    [-1.3310926361740485, 36.86033191969696],
+    [-1.3309300722465593, 36.85922618664165],
+    [-1.3305922074976309, 36.8578078671047],
+    [-1.3301357980679995, 36.856702577921965],
+    [-1.3279119573787597, 36.852720768074676],
+    [-1.3257109353257164, 36.84903340507208],
+    [-1.3216701287473427, 36.84217354844921],
+    [-1.3178110061117536, 36.835624788376094],
+    [-1.3164579777126875, 36.83344149588251],
+    [-1.31569211225586, 36.83233069794687],
+    [-1.314990068714394, 36.83164123716077],
+    [-1.3141500464370495, 36.8310265154264],
+    [-1.3124980053929107, 36.83013142472478],
+    [-1.3080980252038472, 36.82805449066038],
+    [-1.3003600711356427, 36.82441603194576],
+    [-1.300062036372978, 36.82439310029048],
+    [-1.299647433045564, 36.824338681013984],
+    [-1.2993518091801093, 36.824109932039136],
+    [-1.2987772947965226, 36.82398160943819],
+    [-1.2959888279617218, 36.82246160072424],
+    [-1.2929296639931351, 36.820578557727686]
+];
+
+
+var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+
+polyline.bindPopup("You've clicked a line");
+            
+var bounds = [
+    [-1.3085303821643492, 36.84174908911709],
+    [-1.28977000609828, 36.86654248784936]
+];
+
+var rectangle = L.rectangle(bounds, {color: '#00FF00', weight: 2}).addTo(map);
+rectangle.bindPopup("You've clicked a rectangle");
+
+var polygon = L.polygon([
+    [-1.2816514901668512, 36.81523305668617],
+    [-1.292658255960049, 36.82037770334156],
+    [-1.2905323422843367, 36.82541945706373],
+    [-1.287206312486731, 36.83100997309603],
+    [-1.285697596508541, 36.83200460478304],
+    [-1.2823029822984466, 36.83317072469137],
+    [-1.2813085995048255, 36.832999236470016],
+    [-1.28082855250112, 36.83162733069523],
+    [-1.280588528965552, 36.83018682963137],
+    [-1.2786683398711602, 36.82648268403986],
+    [-1.2787369180781951, 36.822641347870075],
+    [-1.2795598564152897, 36.820343405697486],
+    [-1.2802456381613183, 36.819383071654556],
+    [-1.280108481827014, 36.8186628211231],
+    [-1.2816514901668512, 36.81523305668617]
+]
+, {color: 'blue'}).addTo(map);
+polygon.bindPopup("You've clicked a polygon");
+            
+var circle = L.circle([-1.3246858480391097, 36.847041112407624,], {
+    color: 'purple',
+    fillColor: '#800080',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(map);
+circle.bindPopup("You've clicked a circle of radius 500m");
+    </script>
+</body>
+
+</html>

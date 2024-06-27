@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Map</title>
+    <link href="prims/prism.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Leaflet Tutorial</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Tutorials</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="1-basic-page.html">
+                                1 Introduction
+                            </a>
+                            <a class="dropdown-item" href="2-basic-map.html">
+                                2 Basic Map
+                            </a>
+                            <a class="dropdown-item" href="3-markers-and-popups.html">
+                                3 Markers and Popups
+                            </a>
+                            <a class="dropdown-item" href="4-polygons-and-circles.html">
+                                4 Polygons and Circles
+                            </a>
+                            <a class="dropdown-item" href="5-working-with-geojson.html">
+                                5 Working with GeoJSON
+                            </a>
+                            <a class="dropdown-item" href="6-user-interaction.html">
+                                6 User Interactions
+                            </a>
+                            <a class="dropdown-item" href="7-choropleth-map.html">
+                                7 choropleth map
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h4>Leaflet Interactions</h4>
+        <p>Leaflet is a powerful, open-source JavaScript library for interactive maps that is widely used in web
+            development. One of its standout features is the ability to handle various user interactions effortlessly,
+            making maps not only visually appealing but also highly functional and interactive. From simple tasks like
+            zooming and panning to more advanced operations such as drawing custom shapes, measuring distances, and
+            geocoding, Leaflet provides a comprehensive suite of tools to enhance user engagement.
+        </p>
+        <p>
+            In this tutorial, we will explore user interactions available in Leaflet, demonstrating how
+            to implement and customize them to create a rich, interactive mapping experience. Whether you're building a
+            simple location finder or a complex geographic information system (GIS), understanding these interactions
+            will enable you to leverage Leaflet's full potential, offering users an intuitive and engaging way to
+            interact with geographic data
+        </p>
+        <h5>1. Zooming and Panning</h5>
+        <p>Leaflet allows users to interactively zoom in/out and pan across the map. By default leaflet has the zoom
+            conrol enabled but they can be disabled and customize for positioning in different places.</p>
+        <pre>
+            <code class="language-javascript">
+// Zoom controls
+L.control.zoom({ position: 'topleft' }).addTo(map);
+            </code>
+        </pre>
+        <h5>2. Adding Markers and Popups</h5>
+        <p>Enhance map interactivity by adding markers with popups to display information</p>
+        <pre>
+            <code class="language-javascript">
+// Example marker with popup
+var marker = L.marker([-1.2816514901668512, 36.81523305668617]).addTo(map)
+    .bindPopup('This is a marker popup.')
+    .openPopup();
+            </code>
+        </pre>
+        <h5>3. User Location</h5>
+        <p>Enable users to find their current location on the map</p>
+        <p>The <b>L.control.locate</b>control is a useful Leaflet plugin that allows users to easily locate themselves
+            on the
+            map. This control provides a button on the map that, when clicked, uses the browser's geolocation
+            capabilities to find the user's current location and center the map on that point.
+        </p>
+        <h6>Include Required Libraries/Plugin</h6>
+        <p>Add the css and js to the respective places in a html document</p>
+        <pre>
+            <code class="language-html">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.81.1/dist/L.Control.Locate.min.css&quot; /&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.81.1/dist/L.Control.Locate.min.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+            </code>
+        </pre>
+        <p>
+            You can customize the behavior and appearance of the locate control by adjusting the options passed to L.control.locate(). Here are additional options:
+            <ul>
+                <li>
+                    flyTo: Set to true to animate the map to the user's location (default: true).
+                </li>
+                <li>
+                    setView: Set to true to center the map on the user's location without animation (default: true).
+                </li>
+                <li>
+                    keepCurrentZoomLevel: Set to true to keep the current zoom level when centering the map (default: false).
+
+                </li>
+                <li>
+                    keepCurrentZoomLevel: Set to true to keep the current zoom level when centering the map (default: false).
+                </li>
+                <li>
+                    icon: Customize the icon class used for the control button.
+                </li>
+                <li>
+                    strings: Customize the text displayed on the control button and during location detection.
+                </li>
+            </ul>
+        </p>
+        <pre>
+            <code class="language-javascript">
+// Add locate control to the map using default option
+L.control.locate({
+    position: 'topright',
+    strings: {
+        title: "Show me where I am!"
+    }
+}).addTo(map);
+
+// Add a customized locate control to the map
+L.control.locate({
+    position: 'topright',
+    flyTo: true,
+    setView: true,
+    keepCurrentZoomLevel: true,
+    icon: 'fa fa-location-arrow',
+    strings: {
+        title: "Locate me!",
+        popup: "You are within {distance} {unit} from this point",
+        outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
+    }
+}).addTo(map);
+            </code>
+        </pre>
+        <pre>
+            <code class="language-javascript">
+// User location control
+L.control.locate().addTo(map);
+            </code>
+        </pre>
+        <h5>5. Draw and Edit Features</h5>
+        <p>Allow users to draw and edit features (markers, polylines, polygons). This is part of leaflet plugins(Code to
+            extend the functionality of leaflet).<br>Note that plugins are loaded after the core(leaflet.js) has been
+            loaded<br><a href="https://leafletjs.com/plugins.html" target="_blank"><i>Leaflet Plugin
+                    Documentation</i></a></p>
+        <p>Start by adding the required css and javascript files(we use content delivery network to add the files
+            without having to host them locally)</p>
+        <h6>Adding Draw Library CSS</h6>
+        <p>Add the following line of code to the head section of your html file after leaflet.css</p>
+        <pre>
+            <code class="language-html">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css&quot; /&gt;
+            </code>
+        </pre>
+        <h6>Adding Draw Library JavaScript</h6>
+        <p>Add the following line of code to the head section of your html file after leaflet.css</p>
+        <pre>
+            <code class="language-html">
+&lt;script src=&quot;https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js&quot;&gt;&lt;/script&gt;
+            </code>
+        </pre>
+        <pre>
+            <code class="language-javascript">
+// Initialize the FeatureGroup to store drawn items
+var drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+// Initialize draw control for drawing features
+var drawControl = new L.Control.Draw({
+    draw: {
+        marker: true,
+        polyline: true,
+        polygon: true,
+        circle: false,
+        rectangle: false
+    },
+    edit: {
+        featureGroup: drawnItems,
+        remove: true
+    }
+});
+map.addControl(drawControl);
+
+// Event listeners for draw and edit operations
+map.on(L.Draw.Event.CREATED, function(event) {
+    var layer = event.layer;
+    drawnItems.addLayer(layer);
+});
+
+// Handle editing of layers
+map.on(L.Draw.Event.EDITED, function(event) {
+    var layers = event.layers;
+    layers.eachLayer(function(layer) {
+        // Handle edited layers
+    });
+});
+
+// Handle deletion of layers
+map.on(L.Draw.Event.DELETED, function (event) {
+    var layers = event.layers;
+    layers.eachLayer(function (layer) {
+        // Optionally handle the deleted layers
+    });
+});
+            </code>
+        </pre>
+        <p><b>Leaflet.draw</b> is crucial component for managing user interactive with features, allowing users to
+            interact
+            with the map in a dynamic and engaging way. This setup can be further extended and customized to fit various
+            mapping applications and user needs.</p>
+        <h5>5. Layer Control</h5>
+        <pre>
+            <code class="language-javascript">
+//use leaflet providers to get sample base maps https://leaflet-extras.github.io/leaflet-providers/preview/
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    maxZoom: 17,
+    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var OpenStreetMap_France = L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+	maxZoom: 20,
+	attribution: '&copy; OpenStreetMap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+// Layer control
+var baseMaps = {
+    "OSM":baseOSM,
+    "Open Topo": OpenTopoMap,
+    "OSM France": OpenStreetMap_France
+};
+
+var overlayMaps = {
+    "Museum": museumMarker,
+    "Custom Marker": customMarker,
+    "Div Marker":divMarker,
+    "Polyline": polyline,
+    "Rectangle": rectangle,
+    "Polygon":polygon,
+    "Circle":circle,
+    "GeoJSON":geojsonLayer,
+    "Drawn Items":drawnItems
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+            </code>
+        </pre>
+        <p>The Leaflet.draw plugin enhances the interactivity and functionality of Leaflet maps by
+            allowing users to draw, edit, and delete shapes directly on the map. This tool extends the
+            capabilities of Leaflet, making it a good choice for applications that require user-generated content,
+            such as custom annotations, interactive map-based forms, and spatial data collection.
+
+            By integrating L.FeatureGroup to store drawn items and setting up the L.Control.Draw for drawing controls,
+            you can improve user experience. The event listeners for creating, editing, and
+            deleting shapes ensure that all user interactions are effectively managed and the map remains up-to-date.
+        </p>
+        <h5>6. Measure Distance</h5>
+        <p>Allowing users to measure distances on a map can significantly enhance the interactivity and utility of your
+            Leaflet application. While Leaflet doesn't have a built-in distance measurement tool, plugins like
+            Leaflet.Measure or Leaflet.PolylineMeasure can be used to easily add this functionality.
+        </p>
+        <h6>Include Required Libraries/Plugin</h6>
+        <p>Add the css and js to the respective places in a html document</p>
+        <pre>
+            <code class="language-html">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css&quot; /&gt;
+&lt;script src=&quot;https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js&quot;&gt;&lt;/script&gt;
+            </code>
+        </pre>
+        <p>
+            To implement the functionality of leaflet measure contron and customize the distance measurement tool by
+            adjusting the options passed to L.control.polylineMeasure.
+        </p>
+        <p>Some useful options include:
+        <ul>
+            <li>
+                position: Controls the position of the measurement tool button on the map (e.g., 'topleft', 'topright').
+            </li>
+            <li>
+                unit: Specifies the unit of measurement ('metres', 'landmiles', 'nauticalmiles').
+            </li>
+            <li>
+                showBearings: Displays bearings between points.
+            </li>
+            <li>
+                clearMeasurementsOnStop: Clears measurements when the tool is stopped.
+            </li>
+            <li>
+                showClearControl: Shows a control button to clear measurements.
+            </li>
+            <li> showUnitControl: Shows a control to switch between measurement units.</li>
+        </ul>
+        </p>
+        <pre>
+            <code class="language-javascript">
+// Add distance measurement control
+L.control.polylineMeasure({
+    position: 'topleft',
+    unit: 'metres',
+    showBearings: true,
+    clearMeasurementsOnStop: false,
+    showClearControl: true,
+    showUnitControl: true
+}).addTo(map);
+            </code>
+        </pre>
+        <p>
+            By integrating the Leaflet.PolylineMeasure plugin, you can easily add a distance measurement tool to your
+            Leaflet map, enhancing its functionality and user interactivity. This tool is particularly useful for
+            applications requiring precise distance calculations, such as route planning, property mapping, or any
+            GIS-related project. For further customization and advanced options, refer to the <a
+                href="https://github.com/ppete2/Leaflet.PolylineMeasure" target="_blank"><i>Leaflet.PolylineMeasure
+                    documentation</i></a>
+        </p>
+        <h5>7. Fullscreen View</h5>
+        <p>
+            Enabling a fullscreen view can greatly enhance the user experience by allowing users to see more of the map
+            at once. This is especially useful for detailed mapping applications or when users need to explore large
+            areas. To add fullscreen capabilities to your Leaflet map, you can use the <b>Leaflet.fullscreen</b> plugin.
+        </p>
+        <h6>Include Required Libraries/Plugin</h6>
+        <p>Add the css and js to the respective places in a html document</p>
+        <pre>
+            <code class="language-javascript">
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/3.0.2/Control.FullScreen.min.js&quot; integrity=&quot;sha512-G3uVfdWq1gdYQ0tfaN8APmD3UBQCv0Am3csZtRdaNbCBzNgh57yu7MhgrXozjeflGsRapDpBVdrKCQahT99p0Q==&quot; crossorigin=&quot;anonymous&quot; referrerpolicy=&quot;no-referrer&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/3.0.2/Control.FullScreen.min.css&quot; integrity=&quot;sha512-icRYRbqvwyLFADCizHy+7d4vVNnzF92F0ADsgIlPU2eegXZJ9iHtF1BMi7xdgo1lSyd0nsyI5Lvxhhlxx7WxZg==&quot; crossorigin=&quot;anonymous&quot; referrerpolicy=&quot;no-referrer&quot; /&gt;
+            </code>
+        </pre>
+        <p>
+            The <b>Leaflet.fullscreen</b> plugin offers customization options:
+        <ul>
+            <li>
+                position: Controls the position of the fullscreen button on the map (e.g., 'topleft', 'topright').
+            </li>
+            <li>
+                title: Customizes the title for the fullscreen button.
+            </li>
+            <li>
+                titleCancel: Customizes the title for the exit fullscreen button.
+            </li>
+        </ul>
+        </p>
+        <pre>
+            <code class="language-javascript">
+// Add fullscreen control
+var fullscreenControl = L.control.fullscreen({
+    position: 'topright',
+    title: 'Show fullscreen',
+    titleCancel: 'Exit fullscreen',
+    forceSeparateButton: true
+})
+map.addControl(fullscreenControl);
+
+// Detect when entering or exiting fullscreen useful for debugging your code
+map.on('enterFullscreen', function(){
+    console.log('entered fullscreen');
+});
+
+map.on('exitFullscreen', function(){
+    console.log('exited fullscreen');
+});
+            </code>
+        </pre>
+        <h5>8. Geocoding</h5>
+        <p>
+            Geocoding is the process of converting addresses into geographic coordinates, which you can then use to
+            place
+            markers on a map. This is a powerful feature that allows users to search for locations by address and get a
+            corresponding point on the map.
+        </p>
+        <p>
+            We'll use the <b>Leaflet.Control.Geocoder</b> plugin, which provides easy integration with various geocoding
+            services like OpenStreetMap's Nominatim, Mapbox, and others
+        </p>
+        <h6>Include Required Libraries/Plugin</h6>
+        <p>Add the css and js to the respective places in a html document</p>
+        <pre>
+            <code class="language-javascript">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css&quot; /&gt;
+&lt;script src=&quot;https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js&quot;&gt;&lt;/script&gt;
+            </code>
+        </pre>
+        <p>The geocoding control is added to the map using L.Control.geocoder().</p>
+        <pre>
+            <code class="language-javascript">
+var geocoder = L.Control.geocoder().addTo(map);
+            </code>
+        </pre>
+        <p>Integrating geocoding services with Leaflet maps greatly enhances the functionality and user experience by
+            allowing users to search for locations by address. The Leaflet.Control.Geocoder plugin provides a simple and
+            effective way to add geocoding capabilities to your map. By customizing the geocoding service and handling
+            geocode results, you can create a powerful and user-friendly map application. For further customization and
+            advanced options, refer to <a href="https://github.com/perliedman/leaflet-control-geocoder"><i>the
+                    Leaflet.Control.Geocoder documentation</i></a>.
+        </p>
+        <h5>9. Scale Bar</h5>
+        <p>
+            A scale bar provides a visual indication of the map's scale, helping users understand the distance between
+            points on the map. Leaflet has a built-in control for adding a scale bar, making it easy to implement this
+            feature. However, if you need ad advance scale bar you can be able to use plugin to implement this feature.
+            <br>
+            <i>One of my favourite bar is available at <a href="https://github.com/kalisio/leaflet-graphicscale"
+                    target="_blank">leaflet-graphicscale</a>(<a href="https://kalisio.github.io/leaflet-graphicscale/"
+                    target="_blank">demo</a>)</i>
+        </p>
+        <pre>
+            <code class="language-javascript">
+// Add a scale bar to the map
+L.control.scale({
+    position: 'bottomleft',  // Position of the scale bar
+    imperial: false,         // Display metric units only
+    maxWidth: 200            // Maximum width of the scale bar in pixels
+}).addTo(map);
+            </code>
+        </pre>
+        <p>Once the scale bar is added to the map, it will automatically adjust as the map zoom level changes, providing
+            a visual representation of distances on the map.</p>
+        <h5>10. Expected Output</h5>
+        <p>The expected output of this tutorial is shown below</p>
+        <iframe src="6-user-interaction-index.html" style="width: 100%; height: 500px; border: 1px solid black;"
+            title="Iframe Example"></iframe>
+    </div>
+
+    <!-- (Optional) - Place this js code after initializing bootstrap.min.js or bootstrap.bundle.min.js -->
+    <script>
+        var triggerEl = document.querySelector("#navId a");
+        bootstrap.Tab.getInstance(triggerEl).show(); // Select tab by name
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="prims/prism.js"></script>
+</body>
+
+</html>

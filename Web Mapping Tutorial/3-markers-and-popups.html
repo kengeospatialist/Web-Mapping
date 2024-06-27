@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Map</title>
+    <link href="prims/prism.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Leaflet Tutorial</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Tutorials</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="1-basic-page.html">
+                                1 Introduction
+                            </a>
+                            <a class="dropdown-item" href="2-basic-map.html">
+                                2 Basic Map
+                            </a>
+                            <a class="dropdown-item" href="3-markers-and-popups.html">
+                                3 Markers and Popups
+                            </a>
+                            <a class="dropdown-item" href="4-polygons-and-circles.html">
+                                4 Polygons and Circles
+                            </a>
+                            <a class="dropdown-item" href="5-working-with-geojson.html">
+                                5 Working with GeoJSON
+                            </a>
+                            <a class="dropdown-item" href="6-user-interaction.html">
+                                6 User Interactions
+                            </a>
+                            <a class="dropdown-item" href="7-choropleth-map.html">
+                                7 choropleth map
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h4>Markers and Popups</h4>
+        <p>In this tutorial, we will build upon the basic map setup you created using Leaflet and Bootstrap. We will
+            focus on adding markers and popups to enhance the interactivity of your map. Markers can pinpoint specific
+            locations on the map, while popups can provide additional information when these markers are clicked.</p>
+        <h5>1: Adding Markers to the Map</h5>
+        <p>Markers are one of the most fundamental features in Leaflet. They represent geographic points on the map and
+            can be customized with different icons and styles.</p>
+        <h6>1.1: Initialize Your Map</h6>
+        <p>Assuming you have set up your basic map as described in the previous tutorial, you will start by initializing
+            your map and setting its view to Nairobi, Kenya:</p>
+        <pre>
+            <code class="language-javascript">
+//Initialize a map
+var map = L.map('map').setView([-1.2978553,36.8767045], 13);
+//add a tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+            </code>
+        </pre>
+        <h6>1.2. Adding a Simple Marker</h6>
+        <p>To add a simple marker to the map, use the <b>L.marker</b> method. Let's add a marker for the Nairobi
+            National Museum, The code below will place a default marker at the specified latitude and longitude.</p>
+        <pre>
+            <code class="language-javascript">
+var museumMarker = L.marker([-1.276111, 36.808611]).addTo(map);
+            </code>
+        </pre>
+        <h5>2: Customizing Markers</h5>
+        <p>Markers can be customized with different icons and styles to better suit your application's needs.</p>
+        <h6>2.1. Using Custom Icons</h6>
+        <p>You can create a custom icon using the L.icon method <i>Adjust the iconSize, iconAnchor, and popupAnchor
+                properties to your liking(<a href="https://leafletjs.com/reference.html#icon">Leaflet Icons
+                    documentation</a>)</i>. Here, we'll use a custom PNG icon without a shadow</p>
+        <pre>
+            <code class="language-javascript">
+var customIcon = L.icon({
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6e/678111-map-marker-512.png',
+    iconSize: [38, 38], // size of the icon
+    iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -38] // point from which the popup should open relative to the iconAnchor
+});
+
+var customMarker = L.marker([-1.286389, 36.817223], { icon: customIcon }).addTo(map);
+            </code>
+        </pre>
+        <h6>2.2. Using Div Icons</h6>
+        <p>You can also create custom markers using HTML and CSS with L.divIcon methods(<a
+                href="https://leafletjs.com/reference.html#divicon" target="_blank">Leaflet Div Icons documentation</a>).</p>
+        <pre>
+            <code class="language-javascript">
+var divIcon = L.divIcon({
+    html: '&lt;div style=&quot;background-color: red; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;&quot;&gt;M&lt;/div&gt;',
+    className: 'custom-div-icon',
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -12]
+});
+
+var divMarker = L.marker([-1.292066, 36.821945], { icon: divIcon }).addTo(map);
+            </code>
+        </pre>
+        <h5>3: Adding Popups to Markers</h5>
+        <p>Popups can be added to markers to display information when they are clicked, providing an interactive way to
+            present additional details about specific locations on the map. This functionality is particularly useful
+            for delivering context or descriptive content directly associated with geographic points, such as landmarks,
+            points of interest, or user-defined locations. In Leaflet, popups are easily attached to markers using the
+            <b>bindPopup</b> method, which allows for rich HTML content, including text, images, and links, to be
+            displayed
+            within the popup. This enhances the user experience by enabling them to access pertinent information
+            seamlessly as they interact with the map.
+        </p>
+        <h6>Simple Popup</h6>
+        <p>To add a simple popup to a marker, use the <b>bindPopup</b> method, which allows you to attach informative
+            and
+            interactive content directly to a map marker. This method binds an HTML string to the marker, which is
+            displayed when the marker is clicked. For example, using bindPopup("<b>Uhuru Park</b><br>A large
+            recreational park in Nairobi.") attaches a popup with bold text and a brief description to the marker. The
+            openPopup method in Leaflet allows you to programmatically open a popup that is attached to a marker or any
+            other layer on the map. This method is useful for triggering the display of information without requiring
+            user interaction, such as automatically opening a popup when the map loads or in response to a specific
+            event. For instance, calling openPopup() on a marker with a bound popup will immediately display the popup
+            without the need for the user to click on the marker. This feature is particularly valuable for highlighting
+            important details or points of interest on the map, ensuring that critical information is easily accessible
+            to users as they explore the interactive map interface.
+        </p>
+        <pre>
+            <code class="language-javascript">
+museumMarker.bindPopup(&quot;&lt;b&gt;Nairobi National Museum&lt;/b&gt;&lt;br&gt;A place to explore Kenya's rich heritage.&quot;).openPopup();
+customMarker.bindPopup(&quot;&lt;b&gt;Uhuru Park&lt;/b&gt;&lt;br&gt;A large recreational park in Nairobi.&quot;);
+divMarker.bindPopup(&quot;&lt;b&gt;Kenya International Conference Centre&lt;/b&gt;&lt;br&gt;A 28-story building located in Nairobi's central business district.&quot;);
+            </code>
+        </pre>
+        <h5>3: Interactive Popups</h5>
+        <p>
+            Leaflet provides robust support for creating interactive popups that can be triggered by various events,
+            enhancing user engagement with geographic data on maps. These popups can respond to events like clicks,
+            hovers, and custom interactions defined by developers. For example, you can set a popup to appear when a
+            user clicks on a marker (<b>click</b> event), providing detailed information about a specific location.
+            Additionally, popups can be configured to appear when a user hovers over a marker (<b>mouseover</b> event),
+            offering immediate context without requiring a click. This flexibility allows developers to design dynamic
+            user experiences that cater to different interaction preferences, making maps more intuitive and informative
+            for users exploring geographical information.
+        </p>
+        <h6>3.1. Click Event</h6>
+        <p>By default, popups are triggered by a click event. You can also programmatically open a popup using the
+            <b>openPopup</b> method:
+        </p>
+        <pre>
+            <code class="language-javascript">
+museumMarker.on('click', function() {
+    museumMarker.openPopup();
+});
+            </code>
+        </pre>
+        <h6>3.2. Hover Event</h6>
+        <p>To open a popup on hover, you can use the <b>mouseover</b> and <b>mouseout</b> events:</p>
+        <pre>
+            <code class="language-javascript">
+museumMarker.on('mouseover', function() {
+    museumMarker.openPopup();
+});
+
+museumMarker.on('mouseout', function() {
+    museumMarker.closePopup();
+});  
+            </code>
+        </pre>
+        <h5>4: Grouping Markers</h5>
+        <p>If you have numerous markers scattered across your map, Leaflet offers convenient tools like
+            <b>L.layerGroup</b> or
+            <b>L.featureGroup</b> to help you manage them more efficiently. These groups allow you to organize related
+            markers
+            into clusters, simplifying the control and manipulation of multiple markers at once. By grouping markers,
+            you can easily add or remove them from the map as a single entity, apply common styling or event handling to
+            the entire group, and improve the overall performance of your map application. This approach not only
+            streamlines the management of complex map layouts but also enhances the user experience by ensuring that
+            interactions with multiple markers are cohesive and intuitive.
+        </p>
+        <h6>4.1. Using <b>L.layerGroup</b></h6>
+        <pre>
+            <code class="language-javascript">
+var markers = L.layerGroup([museumMarker, customMarker, divMarker]);
+map.addLayer(markers);
+            </code>
+        </pre>
+        <h6>4.2. Using <b>L.featureGroup</b></h6>
+        <pre>
+            <code class="language-javascript">
+var featureGroup = L.featureGroup([marker1, marker2, marker3]).addTo(map);
+
+featureGroup.on('click', function(e) {
+  alert("Clicked on marker at " + e.latlng);
+});
+            </code>
+        </pre>
+        <h5>5: Expected Output</h5>
+        <p>The expected output of this tutorial is shown below</p> 
+        <iframe src="3-markers-and-popups-index.html" style="width: 100%; height: 500px; border: 1px solid black;" title="Iframe Example"></iframe>
+        
+        <h5>6: Conclusion</h5>
+
+        <p>By following this tutorial, you have learned how to add markers and popups to your Leaflet map, customize
+            them, and handle various events. These features enhance the interactivity and usability of your map,
+            allowing users to engage more deeply with the geographic data you present. For additional customization and
+            functionality, explore the <a href="https://leafletjs.com/reference.html" target="_blank">Leaflet documentation</a> and Leaflet Providers for more base map options.</p>
+    </div>
+
+    <!-- (Optional) - Place this js code after initializing bootstrap.min.js or bootstrap.bundle.min.js -->
+    <script>
+        var triggerEl = document.querySelector("#navId a");
+        bootstrap.Tab.getInstance(triggerEl).show(); // Select tab by name
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="prims/prism.js"></script>
+</body>
+
+</html>
