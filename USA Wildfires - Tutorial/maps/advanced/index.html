@@ -1,0 +1,106 @@
+<html>
+    <head> 
+        <title>Lab Project - Heatmaps</title> 
+		<!-- Icon--> 
+        
+        <!-- Leaflet Css--> 
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+        <!-- Ensure cross platform compatibility --> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+        <!-- Style --> 
+		<!--North Arrow -->
+		<link rel="stylesheet" href="plugins/north-arrow/L.Control.Rose.css" >
+		<!-- Better Scale Css--> 
+		<link rel="stylesheet" href="plugins/better-scale/L.Control.BetterScale.css" />
+
+        <style> 
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #map {
+			height: 100%;
+			width: 100vw;
+		}
+		
+		.titleDiv {
+			padding: 6px;
+			background: rgba(255,255,255,0.9);
+			box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			border-radius: 2px;
+			line-height: 0.1;
+		}
+        </style> 
+    </head> 
+    <body> 
+		<div id="map"></div>
+		<!--Noth Arrow --> 
+		<div id="rose"></div>
+        <!-- Java Scripts--> 
+        <!--script>--> 
+        <!-- Load d3.js and c3.js -->
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+		<!-- Jquery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js"></script>
+        <!-- Leaflet js-->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+		<!--North Arrow --> 
+		<script src="plugins/north-arrow/L.Control.Rose.js"></script>
+		<!-- Better Scale Js--> 
+		<script src="plugins/better-scale/L.Control.BetterScale.js"></script>
+
+		<script>
+			var Jawg_Matrix = L.tileLayer('https://{s}.tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+				attribution: '© JawgMaps © OpenStreetMap contributors',
+				minZoom: 0,
+				maxZoom: 22,
+				subdomains: 'abcd',
+				accessToken: 'XtidJ8DmagbIe4pQL2VlUdo55zeODRpHFd2jaQjOEGOVDA5jgsXLyx3tAXirPjJd'
+			});
+
+			var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '© OpenStreetMap contributors'
+			});
+			//cartodb layer
+			var cartodb = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+				attribution: 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
+				maxZoom: 11,
+				minZoom: 2
+			});
+
+			//map
+			var map = L.map('map',  {
+				center: [39.2880922,-100.7323497],//sets map center
+				zoom: 4,//set zoom level
+				layers: [Jawg_Matrix],//heatmapLayer/add to map
+			});
+			//here we define our base layer incase we need to use multiple basemap layers
+			var baseMaps = {
+				"Jawg Matrix": Jawg_Matrix,
+				"Carto DB": cartodb,
+				"OSM Mapnik": OpenStreetMap_Mapnik
+			};
+			
+			
+			
+			
+			//Map tile									
+			var titleDiv = L.control({position: 'topright'}); //position 'topright' a leaflet class used to position iems inside map div
+			titleDiv.onAdd = function (map){
+				var titleText = document.createElement('div'); //here we define html tag 'div', and give it a class named 'titleDiv'
+				titleText.innerHTML = '<div style="box-shadow: 0 1px 5px rgba(0,0,0,0.4); background: #fff; border-radius: 6px; padding: 6px; line-height:2;">USA Wild Fires<br/><span class="small text-muted">September and October 2020</span></div>'; //here we are adding elements in the title div
+				return titleText;
+				console.log("title");
+			};
+			titleDiv.addTo(map); //this adds the title to the map
+			L.control.layers(baseMaps).addTo(map);
+			//add better scale plugin to map
+			L.control.betterscale().addTo(map);
+			//rose north arrow
+			var rose = L.control.rose('rose', {position:'bottomleft', icon:'inner', iSize:'xsmall', opacity:0.8});
+			rose.addTo(map);
+			
+		</script>
+	</body> 
+</html>

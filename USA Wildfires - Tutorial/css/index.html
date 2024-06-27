@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lab Project Tutorial</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" />
+    <!-- prism-->
+    <link rel="stylesheet" href="js/prism/plugins/themes/prism-okaidia.css" data-noprefix />
+    <link rel="stylesheet" href="js/prism/plugins/toolbar/prism-toolbar.css" data-noprefix />
+    <script src="js/prism/prefixfree.min.js"></script>
+    <script src="js/prism/components/prism-markup.js"></script>
+    <script src="js/prism/prism.js"></script>
+    <script src="js/prism/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+    <script src="js/prism/plugins/toolbar/prism-toolbar.js"></script>
+
+    <script src="js/prism/plugins/show-language/prism-show-language.js"></script>
+    <script src="js/prism/utopia.js"></script>
+    <script src="js/prism/components.js"></script>
+    <script src="js/prism/code.js"></script>
+</head>
+
+<body class=" bg-light" id="cont">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark "> <a class="navbar-brand" href="#">Heatmaps</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#introduction">Introduction <span class="sr-only">(current)</span></a> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leaflet Map</a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
+                        <a class="dropdown-item text-decoration-none" href="#sample-map">Sample Map</a>
+                        <a class="dropdown-item text-decoration-none" href="#data">Data</a>
+                        <a class="dropdown-item text-decoration-none" href="#map-title">Title</a>
+                        <a class="dropdown-item text-decoration-none" href="#north-arrow">North Arrow</a>
+                        <a class="dropdown-item text-decoration-none" href="#scale-bar">Scale Bar</a>
+                        <a class="dropdown-item text-decoration-none" href="#heatmaps">Heatmaps</a>
+                        <a class="dropdown-item text-decoration-none" href="#legend">More Function</a>
+                        <a class="dropdown-item text-decoration-none" href="#search">Search</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 h-100 text-left sticky-top list-group" id="sider">
+                <a class="list-group-item" href="#introduction">Introduction</a>
+                <a class="list-group-item" href="#sample-map">Sample Map</a>
+                <a class="list-group-item" href="#data">Data</a>
+                <a class="list-group-item" href="#map-title">Title</a>
+                <a class="list-group-item" href="#north-arrow">North Arrow</a>
+                <a class="list-group-item" href="#scale-bar">Scale Bar</a>
+                <a class="list-group-item" href="#heatmaps">Heatmaps</a>
+                <a class="list-group-item" href="#legend">More Function</a>
+                <a class="list-group-item" href="#search">Search</a>
+            </div>
+            <div class="col-md-9 h-100" id="content">
+                <section id="introduction" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Introduction</h3>
+                            <p>
+                                Heatmaps are great in visualizing locational data such that patterns of higher than average occurrence of things likes crime activity, traffic accidents, earthquakes, or store locations can emerge. Heatmaps are great choice in presentation and visualization
+                                of magnitude data in geographical space for easier differentiation of area of high and low occurrences and shed light on hidden factors.
+                            </p>
+                            <p>
+                                I this tutorial we will crete a webmap to visualize data using heatmap while employing chart to provide additional(attribute) information. We will be using <a href="https://github.com/Leaflet/Leaflet.heat">Leaflet.heat plugin</a>                                to display heatmaps and <a href="https://c3js.org/">C3.js Charts Library</a> to provide additional information on heatmap we created.
+                            </p>
+                            <p>
+                                See an example below
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="sample-map" class="mt-0">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Expected output</h3>
+                            <iframe class="w-100" height="400px" src="lab-project/" title="sample map"></iframe>
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="data" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Data Preperation</h3>
+                            I this tutorial we will be using a subset of United States Forest Fires avalable at <a class="text-decoration-none" href="https://storymaps.esri.com/stories/usa-wildfires/">Esri US Wildfires</a>. You can download an CSV file
+                            <a href="lab-project/excel/data-2.csv" download>here</a> of the data. Using QGIS import deliminated file available under add layer, and set geometry to the respective longitude and Latitudes. Then export the file in geojson
+                            file. We will use this file to load the heatmaps.
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="map" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Map</h3>
+                            As you all know, inorder to dispay a webmap you need html document to hold your map. Also you need to include leaflet dependecies in your document. Follow the following steps to complete the preperation of our webmap skeleton.
+                            <br/><b>Note 1.</b> Its advisable to place your stylesheet in head section and script at the bottom o your document to improve loading speed.
+                            <br/><b>Note 2.</b> Save your html document as index.htm, this ensure that the web serer doesnt display file index on parent directory but your map.
+                            <h5>1. Html Document</h5>
+                            In this html document we will be using hosted version of leaflet. You could find the latest version at <a class="text-decoration-none" href="https://leafletjs.com/">leaflet</a> js officail website.<br/> Open your favourite
+                            text editor and paste the code below.
+                            <pre class="language-HTML">
+								<code class="language-HTML">
+<html>
+    <head>
+        <title>Lab Project - Heatmaps</title>
+		<link rel="icon" href="favicon.png" >
+		<!-- Leaflet Css-->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+		<!-- Ensure cross platform compatibility -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- Style -->
+		<style>
+			
+		</style>
+    </head>
+
+    <body>
+		
+		<!-- Java Scripts-->
+		
+		<!--Boostrap
+		<script src="plugins/boostrap/js/bootstrap.min.js"></script>-->
+		<!-- Load d3.js and c3.js -->
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js"></script>
+		<!-- Leaflet js-->
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		crossorigin=""></script>
+    </body>
+</html>
+							</code></pre>
+                            <h5>2. Add map div</h5>
+                            <p>
+                                Before the scripts add ad div and give it an id of map.
+                            </p>
+                            <pre class=" language-HTML">
+								<code class=" language-HTML">
+									<div id="map"></div>
+								</code>
+							</pre>
+                            <h5>3. Add Tile Providers, Layer Control, and Map</h5>
+                            <p>
+                                lets add three tile providers by defining them using let or var keyword, add map variable, and layer control in inside script tags
+                            </p>
+                            <pre class=" language-JavaScript">
+								<code class=" language-JavaScript">
+
+var Jawg_Matrix = L.tileLayer('https://{s}.tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	minZoom: 0,
+	maxZoom: 22,
+	subdomains: 'abcd',
+	accessToken: 'XtidJ8DmagbIe4pQL2VlUdo55zeODRpHFd2jaQjOEGOVDA5jgsXLyx3tAXirPjJd'
+});
+
+var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+//cartodb layer
+var cartodb = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
+	maxZoom: 11,
+	minZoom: 2
+});
+
+//map
+var map = L.map('mymap',  {
+	center: [39.2880922,-100.7323497],//sets map center
+	zoom: 4,//set zoom level
+	layers: [Jawg_Matrix],//heatmapLayer/add to map
+});
+//here we define our base layer incase we need to use multiple basemap layers
+var baseMaps = {
+	"Jawg Matrix": Jawg_Matrix,
+	"Carto DB": cartodb,
+	"OSM Mapnik": OpenStreetMap_Mapnik
+};
+								</code>
+							</pre>
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="map-title" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Adding Map Title</h3>
+                            <h5>1. Javascript code</h5>
+                            <p>
+                                after the defining map virable lets add tile variable to hold out title div</br>
+                                <b>Note.</b> we are defining and adding the title div after instantiating a map variable
+                            </p>
+                            <pre class=" language-JavaScript">
+								<code class=" language-JavaScript">
+//Map tile									
+var titleDiv = L.control({position: 'topright'}); //position 'topright' a leaflet class used to position iems inside map div
+titleDiv.onAdd = function (map){
+	var titleText = L.DomUtil.create('div', 'titleDiv'); //here we define html tag 'div', and give it a class named 'titleDiv'
+	titleText.innerHTML = '<h6>Lab Project : USA Wild Fires</h6><br><span class="small text-muted">September and October 2020</span>'; //here we are adding elements in the title div
+	return titleText;
+};
+titleDiv.addTo(map); //this adds the title to the map
+								</code>
+							</pre>
+                            <h5>2. Styling - Cascading Style Sheet(css)</h5>
+                            <p>
+                                Now that we have added the title div its important to syle our div to our liking. Add the code below inside the style tags inside the head tags. You could create a cascading style sheet (css) and add your style there. this ensure you have a easier syntax
+                                highlighting based on css
+                            </p>
+                            <pre class=" language-css">
+								<code class="language-css">
+//uses class titleDiv
+.titleDiv {
+	padding: 6px;
+	background: rgba(255,255,255,0.9);
+	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	border-radius: 2px;
+	line-height: 0.1;
+}
+								</code>
+							</pre>
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="north-arrow" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Add a North Arrow</h3>
+                            A map has many elements, one of the most important is the north arrow. We well be utilizing
+                            <a class="text-decoration-none" href="https://github.com/bradhamson/L.Control.Rose"> L.Control.Rose</a> Plugin to add north arrow.
+                            <b>This north arrow is used for decoration purposes to add cartographical design to the map.</b>
+                            <h5>1. Download the Plugin</h5>
+                            from the above link use the clone button to download the plugin an include it to our html document as described below.
+                            <ol>
+                                <li>Extract and save the files inside the dist folder in your preferred folder at the root of your project. For mycase it in 'plugins/north-arrow/'</li>
+                                <li>Include L.Control.Rose.css in head section using link tag and stlesheet as text format </li>
+                                <li>Include L.Control.Rose.js inthe bottom section off our html file </li>
+                            </ol>
+                            <h5>2. Add CSS File</h5>
+                            Rember css are usually added in head section of map as they are esier to load.
+                            <pre class=" language-HTML">
+								<code class="language-HTML">
+<!--North Arrow -->
+<link rel="stylesheet" href="plugins/north-arrow/L.Control.Rose.css" />
+								</code>
+							</pre>
+
+                            <h5>3. Add Javascript File</h5>
+                            <pre class=" language-HTML">
+								<code class="language-HTML">
+<!--North Arrow -->
+<script src="plugins/north-arrow/L.Control.Rose.js"></script>
+								</code>
+							</pre>
+                            <h5>4. Add Javascript</h5>
+                            Add the following javascript code after the title varable to add the north arrow we just created.
+                            <pre class=" language-JavaScript">
+								<code class="language-JavaScript">
+//rose north arrow
+var rose = L.control.rose('rose', {position:'bottomleft', icon:'inner', iSize:'xsmall', opacity:0.8});
+rose.addTo(map);
+								</code>
+							</pre>
+                            <h5>5. Add a Div</h5>
+                            <p>
+                                Add a html div and give it an id named rose. This will be storing our north arrow graphic.
+                            </p>
+                            <pre class=" language-HTML">
+								<code class=" language-HTML">
+<!--Noth Arrow -->
+<div id="rose"></div>
+								</code>
+							</pre>
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="scale-bar" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Add Scale Bar</h3>
+                            A scale bar is another vital element of a map. We will be using
+                            <a class="text-decoration-none" href="https://github.com/daniellsu/leaflet-betterscale">leaflet-betterscale</a>, so download it add a to our html document as described in section above(North arrow). Once you have copied your
+                            leflet better scale to your directory off choice, add to our map as shown below.
+                            <h5>1. Add CSS File</h5>
+                            <pre class=" language-HTML">
+								<code class="language-HTML">
+<!-- Better Scale Css-->
+<link rel="stylesheet" href="plugins/better-scale/L.Control.BetterScale.css" />
+								</code>
+							</pre>
+
+                            <h5>2. Add Javascript File</h5>
+                            <pre class=" language-HTML">
+								<code class="language-HTML">
+<!-- Better Scale Js-->
+<script src="plugins/better-scale/L.Control.BetterScale.js"></script>
+								</code>
+							</pre>
+                            <h5>3. Add Javascript</h5>
+                            Add the following javascript code after the rose varable to add the scale bar.
+                            <pre class=" language-JavaScript">
+								<code class="language-JavaScript">
+//add better scale plugin to map
+L.control.betterscale().addTo(map);
+								</code>
+							</pre>
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="heatmaps" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Creating Heatmaps</h3>
+                            <p>We are down to the bussiness end, In this section were are going to be developing the leflet layer of the webmap. First of all you need to download and include plugin to your map as described eralier. After that you need to
+                                include the Leaflet.heat JavaScript File (Leflet.heat extends functionality of leaflet hence no CSS file for it) in our html document and later load a geojson file containing data to visualize</p>
+                            <p>Here we will be using jQuery load JSON($.getJSON) function to load the geojson file we had prepared.</p>
+                            <h5>1. Loading Geojson and Drawing Heatmaps</h5>
+                            <pre class=" language-JavaScript">
+								<code class="language-JavaScript">
+$.getJSON("data/forest_fires.geojson", function(data) {
+	var locations = data.features.map(function(fires) {
+		// the heatmap plugin wants an array of each location
+		var location = fires.geometry.coordinates.reverse();
+		location.push(parseInt(fires.properties.area_ac) * 0.2 / 40);
+		return location; // e.g. [50.5, 30.5, 0.2], // lat, lng, intensity
+	});
+	var heat = L.heatLayer(locations, {
+		radius: 50,
+		blur: 10,
+		max: 1,
+		gradient: {
+			0: '#fcbba1',
+			1: 'red'
+		}
+	});
+	map.addLayer(heat);
+	L.control.addLayer(heat);
+});
+								</code>
+							</pre>
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="legend" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Additional Functionality</h3>
+                            With leaflet heat its difficulty to add popups and tooltips ue to its minified nature, hence to provide additional functionalitie is possible to add an overlay point layer that can offers attribute information to the map. The following javascript code
+                            does it as well as utilizes c3 chart to provide graphical visualization of areas consumed by fires.
+                            <pre class=" language-JavaScript">
+								<code class="language-JavaScript">
+var geojson;
+
+function highlightFeature(e) {
+
+	// Get access to the feature that was hovered through e.target
+	var layer = e.target;
+
+	makeChart(layer.feature.properties);
+	// Set a thick grey border on the feature as mouseover effect
+	// Adjust the values below to change the highlighting styles of features on mouseover
+	// Check out https://leafletjs.com/reference-1.3.4.html#path for more options for changing style
+	layer.setStyle({
+		radius: 10,
+		fillOpacity: 0.7
+	});
+	// Bring the highlighted feature to front so that the border doesn’t clash with nearby states
+	// But not for IE, Opera or Edge, since they have problems doing bringToFront on mouseover
+	if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		layer.bringToFront();
+	}
+}
+
+function makeChart(props) {
+	// props is just a variable, which will be replaced with the layer's properties 
+	// when using the function
+	c3.generate({
+
+		bindto: '#chart', // id of the chart div, as defined earlier
+
+		size: { // size (height and width) of the chart, by pixels
+			height: 180,
+			width: 180
+		},
+
+		title: {
+			text: props.Name.toUpperCase() // Use the NAME attribute as chart title 
+				// This is displayed above the chart
+				// You may use other strings, HTML elements or combined
+		},
+
+		data: {
+			// Define the actual data
+			// I use the attribute values as data for making the charts
+			// The strings are labels of the charts (shown in legend)
+			columns: [
+				['Uncontained', 100 - parseInt(props.perc_conta)],
+				['Contained', parseInt(props.perc_conta)]
+			],
+
+			type: 'donut', // chart type
+		},
+
+		donut: { // options to customize the donut chart
+			label: {
+				show: true // set to not show labels on the segments (too busy)
+			},
+			width: 30 // width of donut
+		},
+
+		color: { // colors of donut segments, same order as the data 
+			pattern: ["#F32013", "#5aa27c"]
+		}
+	});
+}
+
+function resetHighlight(e) {
+	var layer = e.target;
+	layer.setStyle({
+		radius: 7,
+		fillOpacity: 0.7
+	});
+	//c3.flush();
+}
+
+function clicked(e) {
+	var layer = e.target;
+}
+
+function onEachFeature(feature, layer) {
+	layer.on({
+		mouseover: highlightFeature, // Do what defined by the highlightFeature function on mouseover
+		mouseout: resetHighlight,
+		click: clicked, // Do what defined by the resetHighlight function on mouseout
+	});
+}
+
+function getColor(areaConsumed) {
+	return areaConsumed > 115796 ? '#de2d26' :
+		areaConsumed > 10136 ? '#fb6a4a' :
+		areaConsumed > 3500 ? '#fc9272' :
+		areaConsumed > 596 ? '#fcbba1' :
+		areaConsumed > 39 ? '#a1d99b' :
+		'#fef0d9';
+}
+
+function style(feature, latlng) {
+	var circleMarker = L.circleMarker(latlng, {
+		radius: 7,
+		fillColor: getColor(feature.properties.area_ac), // pop_den is the field name for the population density data
+		weight: 2,
+		opacity: 0.7,
+		color: 'yellow',
+		fillOpacity: 0.9
+	});
+	if (L.Browser.touch)
+		return circleMarker; //diable tooltips in touch
+	else
+		return circleMarker.bindTooltip(tooltip);
+}
+
+var tooltip = document.getElementById("chart");
+geojson = L.geoJson(forest_fires, {
+	//style:style,
+	pointToLayer: style,
+	onEachFeature: onEachFeature,
+});
+
+//geojson.bindTooltip(tooltip);
+
+geojson.bindPopup(function(layer) {
+	return '<div class="">' +
+		'<div class="card-header">' + layer.feature.properties.Name.toUpperCase() + '</div>' +
+		'<div class="padi">' +
+		'<ul class="list-group list-group-flush">' +
+		'<li class="list-group-item">Start Date: ' + layer.feature.properties.date + '</li>' +
+		'<li class="list-group-item">Area Consumed: ' + layer.feature.properties.area_ac + ' Ac</li>' +
+		'<li class="list-group-item">Percentage Contained: ' + layer.feature.properties.perc_conta + ' %</li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>';
+});
+geojson.getPopup().on('remove', function() {
+	map.fitBounds(geojson.getBounds());
+});
+
+var legend = L.control({
+	position: 'bottomright'
+});
+legend.onAdd = function(map) {
+
+	var div = L.DomUtil.create('div', 'legend'),
+		grades = [40, 596, 3500, 10136, 115796]; // The break values to define the intervals of population, note we begin from 0 here
+
+	div.innerHTML = '<h6><b>Area Consumed (Ac)</b></h6>'; // The legend title (HTML-based), in this case it's Population Density 2011
+
+	// Loop through our the classes and generate a label with a color box for each interval.
+	// If you are creating a choropleth map, you DO NOT need to change lines below.
+	for (var i = 0; i < grades.length; i++) {
+		div.innerHTML +=
+			'<i style="background:' + getColor(grades[i] + 1) + '"></i>' +
+			grades[i] + (grades[i + 1] ? ' &ndash; ' + grades[i + 1] + '</br>' : '+');
+	}
+	div.innerHTML += '</br><span class="small text-muted">Source : Esri <a target = "_blank" href="https://storymaps.esri.com/stories/usa-wildfires/">USA Wildfires</a></span> <br>';
+	return div;
+};
+legend.addTo(map);
+// Removing the legend when the layer is removed
+map.on('overlayremove', function(eventLayer) {
+	if (eventLayer.name == 'Forest Fires') { // We use the key/display name to refer to the layer
+		map.removeControl(legend); // legend is the variable name of the layer legend
+	}
+});
+
+// Adding the legend when the layer is added
+map.on('overlayadd', function(eventLayer) {
+	if (eventLayer.name == 'Forest Fires') {
+		legend.addTo(map);
+	}
+});
+								</code>
+							</pre>
+                        </div>
+                    </div>
+                </section>
+
+
+                <hr class="border-success" />
+                <section id="search" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Add Search Control</h3>
+                            <p>
+                                Search Control add search functionality to a web map such that when one searches for a location in specified data they can get suggestion with zoom to location functionality and opening of popups. Download Leaflet search contrlo here and include it in
+                                your html document as described earlier.
+                            </p>
+                            <p>
+                                the following code offers a way to achive the describe functionality. Have a close look at the comments.
+                            </p>
+                            <pre class=" language-JavaScript">
+								<code class="language-JavaScript">
+//seacrh
+var searchController = new L.Control.Search({
+	layer: geojson, //layer to search items
+	propertyName: 'Name', //property to search 
+	textPlaceholder: 'Incident..', //placeholder
+	zoom: 14, //zoom value when location is found
+	initial: false
+});
+searchController.on('search:locationfound', function(event) {
+	event.layer.bindPopup(
+		'<div class="">' +
+		'<div class="card-header">' + event.layer.feature.properties.Name.toUpperCase() + '</div>' +
+		'<div class="padi">' +
+		'<ul class="list-group list-group-flush">' +
+		'<li class="list-group-item">Start Date: ' + event.layer.feature.properties.date + '</li>' +
+		'<li class="list-group-item">Area Consumed: ' + event.layer.feature.properties.area_ac + ' Ac</li>' +
+		'<li class="list-group-item">Percentage Contained: ' + event.layer.feature.properties.perc_conta + ' %</li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>'
+	).openPopup(); //popup
+	event.layer.getPopup().on('remove', function() {
+		map.fitBounds(geojson.getBounds()); //zom to whole extend on closing popup
+	});
+});
+								</code>
+							</pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- body code goes here -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.3.1.js"></script>
+
+    <!--smooth scroll-->
+    <script>
+        $(document).ready(function() {
+            // Add smooth scrolling to all links
+            var nav = $('.navbar').outerHeight();
+            $("a").on('click', function(event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        },
+                        800,
+                        function() {
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        }
+                    );
+                } // End if
+            });
+        });
+
+        $(window).on('scroll', function() {
+            var sections = $('section'),
+                nav = $('#sider'),
+                nav_height = nav.outerHeight(),
+                cur_pos = $(this).scrollTop();
+            sections.each(function() {
+                var top = $(this).offset().top,
+                    bottom = top + $(this).outerHeight();
+
+                if (cur_pos >= top && cur_pos <= bottom) {
+                    nav.find('a').removeClass('active');
+                    sections.removeClass('active');
+
+                    $(this).addClass('active');
+                    nav.find('a[href="#' + $(this).attr('id') + '"]').addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

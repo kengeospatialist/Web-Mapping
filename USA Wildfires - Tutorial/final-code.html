@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lab Project Tutorial</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" />
+    <link href="js/highlighter/styles/rainbow.css" rel="stylesheet" type="text/css">
+    <script src="js/highlighter/highlight.pack.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+<body class=" bg-light" id="cont">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark "> <a class="navbar-brand" href="#">Heatmaps</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Leaflet Map</a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown1">
+                        <a class="dropdown-item text-decoration-none" href="#sample-map">Final Map</a>
+                        <a class="dropdown-item text-decoration-none" href="#data">Source Code</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 h-100 text-left sticky-top list-group" id="sider">
+                <a class="list-group-item" href="#sample-map">Final Map</a>
+                <a class="list-group-item" href="#data">Source Code</a>
+            </div>
+            <div class="col-md-9 h-100" id="content">
+                <section id="sample-map" class="mt-0">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Final Output </h3>
+                            <iframe class="w-100" height="400px" src="https://adrian2611.github.io/lab-project/" title="sample map"></iframe>
+                        </div>
+                    </div>
+                </section>
+                <hr class="border-success" />
+                <section id="map" class="mt-3">
+                    <div class="card border-0 border-left-2 bg-transparent">
+                        <div class="card-body">
+                            <h3>Final Code</h3>
+                            <p>
+                                The final html code is show below.
+                            </p>
+                            <pre>
+								<code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;title&gt;Lab Project - Heatmaps&lt;/title&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;favicon.png&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;plugins/boostrap/css/bootstrap.css&quot;&gt;
+    &lt;!-- Load c3.css --&gt;
+    &lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;!-- Leaflet Css--&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/leaflet@1.6.0/dist/leaflet.css&quot; integrity=&quot;sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==&quot; crossorigin=&quot;&quot; /&gt;
+    &lt;!-- Ensure cross platform compatibility --&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+    &lt;!-- Style --&gt;
+    &lt;!-- Better Scale Css--&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;plugins/better-scale/L.Control.BetterScale.css&quot; /&gt;
+    &lt;!--search --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;plugins/leaflet-search/leaflet-search.css&quot; /&gt;
+    &lt;!--North Arrow --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;plugins/north-arrow/L.Control.Rose.css&quot; /&gt;
+    &lt;style&gt;
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        
+        html,
+        body,
+        #mymap {
+            height: 100%;
+            width: 100vw;
+        }
+        
+        .leaflet-popup-content {
+            margin: 0px;
+            line-height: 1;
+        }
+        
+        .padi {
+            padding: 4px;
+        }
+        
+        .row {
+            width: 200px;
+            margin-left: -15px;
+            margin-right: -15px;
+            margin-bottom: -10px;
+        }
+        
+        .column-1 {
+            margin: 3px;
+            padding: 1px;
+        }
+        
+        .column-2 {
+            z-index: 0;
+            width: 100%;
+        }
+        
+        .row:after {
+            content: &quot;&quot;;
+            clear: both;
+        }
+        
+        .description {
+            font-size: 90%;
+        }
+        
+        .legend {
+            padding: 6px 8px;
+            line-height: 18px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        /* Optional: adjust the values below to change the appearance of the legend color boxes */
+        
+        .legend i {
+            width: 15px;
+            height: 15px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+            border-radius: 7px;
+            border: 2px solid yellow;
+        }
+        
+        .titleDiv {
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+            line-height: 0.1;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;!--Map--&gt;
+    &lt;div id=&quot;mymap&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;
+    &lt;!--Noth Arrow --&gt;
+    &lt;div id=&quot;rose&quot;&gt;&lt;/div&gt;
+    &lt;!-- Java Scripts--&gt;
+
+    &lt;!--Boostrap
+        &lt;script src=&quot;plugins/boostrap/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;--&gt;
+    &lt;!-- Load d3.js and c3.js --&gt;
+    &lt;script src=&quot;https://d3js.org/d3.v5.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.20/c3.min.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- Leaflet js--&gt;
+    &lt;script src=&quot;https://unpkg.com/leaflet@1.6.0/dist/leaflet.js&quot; integrity=&quot;sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==&quot; crossorigin=&quot;&quot;&gt;&lt;/script&gt;
+    &lt;!--heat maps--&gt;
+    &lt;script src=&quot;plugins/heat-map/leaflet-heat.js&quot;&gt;&lt;/script&gt;
+    &lt;!--search--&gt;
+    &lt;script src=&quot;plugins/leaflet-search/leaflet-search.js&quot;&gt;&lt;/script&gt;
+    &lt;!--heat maps--&gt;
+    &lt;script src=&quot;plugins/jquery/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- Better Scale Js--&gt;
+    &lt;script src=&quot;plugins/better-scale/L.Control.BetterScale.js&quot;&gt;&lt;/script&gt;
+    &lt;!--North Arrow --&gt;
+    &lt;script src=&quot;plugins/north-arrow/L.Control.Rose.js&quot;&gt;&lt;/script&gt;
+    &lt;!--Crime Rate Data --&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;data/forest_fires.js&quot;&gt;&lt;/script&gt;
+    &lt;!--Map Data --&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        var geojson;
+
+        function highlightFeature(e) {
+
+            // Get access to the feature that was hovered through e.target
+            var layer = e.target;
+
+            makeChart(layer.feature.properties);
+            // Set a thick grey border on the feature as mouseover effect
+            // Adjust the values below to change the highlighting styles of features on mouseover
+            // Check out https://leafletjs.com/reference-1.3.4.html#path for more options for changing style
+            layer.setStyle({
+                radius: 10,
+                fillOpacity: 0.7
+            });
+            // Bring the highlighted feature to front so that the border doesn’t clash with nearby states
+            // But not for IE, Opera or Edge, since they have problems doing bringToFront on mouseover
+            if (!L.Browser.ie &amp;&amp; !L.Browser.opera &amp;&amp; !L.Browser.edge) {
+                layer.bringToFront();
+            }
+        }
+
+        function makeChart(props) {
+            // props is just a variable, which will be replaced with the layer&#39;s properties 
+            // when using the function
+            c3.generate({
+
+                bindto: &#39;#chart&#39;, // id of the chart div, as defined earlier
+
+                size: { // size (height and width) of the chart, by pixels
+                    height: 180,
+                    width: 180
+                },
+
+                title: {
+                    text: props.Name.toUpperCase() // Use the NAME attribute as chart title 
+                        // This is displayed above the chart
+                        // You may use other strings, HTML elements or combined
+                },
+
+                data: {
+                    // Define the actual data
+                    // I use the attribute values as data for making the charts
+                    // The strings are labels of the charts (shown in legend)
+                    columns: [
+                        [&#39;Uncontained&#39;, 100 - parseInt(props.perc_conta)],
+                        [&#39;Contained&#39;, parseInt(props.perc_conta)]
+                    ],
+
+                    type: &#39;donut&#39;, // chart type
+                },
+
+                donut: { // options to customize the donut chart
+                    label: {
+                        show: true // set to not show labels on the segments (too busy)
+                    },
+                    width: 30 // width of donut
+                },
+
+                color: { // colors of donut segments, same order as the data 
+                    pattern: [&quot;#F32013&quot;, &quot;#5aa27c&quot;]
+                }
+            });
+        }
+
+        function resetHighlight(e) {
+            var layer = e.target;
+            layer.setStyle({
+                radius: 7,
+                fillOpacity: 0.7
+            });
+            //c3.flush();
+        }
+
+        function clicked(e) {
+            var layer = e.target;
+        }
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature, // Do what defined by the highlightFeature function on mouseover
+                mouseout: resetHighlight,
+                click: clicked, // Do what defined by the resetHighlight function on mouseout
+            });
+        }
+
+        function getColor(areaConsumed) {
+            return areaConsumed &gt; 115796 ? &#39;#de2d26&#39; :
+                areaConsumed &gt; 10136 ? &#39;#fb6a4a&#39; :
+                areaConsumed &gt; 3500 ? &#39;#fc9272&#39; :
+                areaConsumed &gt; 596 ? &#39;#fcbba1&#39; :
+                areaConsumed &gt; 39 ? &#39;#a1d99b&#39; :
+                &#39;#fef0d9&#39;;
+        }
+
+        function style(feature, latlng) {
+            var circleMarker = L.circleMarker(latlng, {
+                radius: 7,
+                fillColor: getColor(feature.properties.area_ac), // pop_den is the field name for the population density data
+                weight: 2,
+                opacity: 0.7,
+                color: &#39;yellow&#39;,
+                fillOpacity: 0.9
+            });
+            if (L.Browser.touch)
+                return circleMarker; //diable tooltips in touch
+            else
+                return circleMarker.bindTooltip(tooltip);
+        }
+
+        var tooltip = document.getElementById(&quot;chart&quot;);
+        geojson = L.geoJson(forest_fires, {
+            //style:style,
+            pointToLayer: style,
+            onEachFeature: onEachFeature,
+        });
+
+        //geojson.bindTooltip(tooltip);
+
+        geojson.bindPopup(function(layer) {
+            return &#39;&lt;div class=&quot;&quot;&gt;&#39; +
+                &#39;&lt;div class=&quot;card-header&quot;&gt;&#39; + layer.feature.properties.Name.toUpperCase() + &#39;&lt;/div&gt;&#39; +
+                &#39;&lt;div class=&quot;padi&quot;&gt;&#39; +
+                &#39;&lt;ul class=&quot;list-group list-group-flush&quot;&gt;&#39; +
+                &#39;&lt;li class=&quot;list-group-item&quot;&gt;Start Date: &#39; + layer.feature.properties.date + &#39;&lt;/li&gt;&#39; +
+                &#39;&lt;li class=&quot;list-group-item&quot;&gt;Area Consumed: &#39; + layer.feature.properties.area_ac + &#39; Ac&lt;/li&gt;&#39; +
+                &#39;&lt;li class=&quot;list-group-item&quot;&gt;Percentage Contained: &#39; + layer.feature.properties.perc_conta + &#39; %&lt;/li&gt;&#39; +
+                &#39;&lt;/ul&gt;&#39; +
+                &#39;&lt;/div&gt;&#39; +
+                &#39;&lt;/div&gt;&#39;;
+        });
+        geojson.getPopup().on(&#39;remove&#39;, function() {
+            map.fitBounds(geojson.getBounds());
+        });
+        var heat;
+        var heatmapLayer = $.getJSON(&quot;data/forest_fires.geojson&quot;, function(data) {
+            var locations = data.features.map(function(fires) {
+                // the heatmap plugin wants an array of each location
+                var location = fires.geometry.coordinates.reverse();
+                location.push(parseInt(fires.properties.area_ac) * 0.2 / 40);
+                return location; // e.g. [50.5, 30.5, 0.2], // lat, lng, intensity
+            });
+            heat = L.heatLayer(locations, {
+                radius: 50,
+                blur: 10,
+                max: 1,
+                gradient: {
+                    0: &#39;#fcbba1&#39;,
+                    1: &#39;red&#39;
+                }
+            });
+            map.addLayer(heat);
+            L.control.addLayer(heat);
+        });
+
+        var Jawg_Matrix = L.tileLayer(&#39;https://{s}.tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token={accessToken}&#39;, {
+            attribution: &#39;&lt;a href=&quot;http://jawg.io&quot; title=&quot;Tiles Courtesy of Jawg Maps&quot; target=&quot;_blank&quot;&gt;&#169; &lt;b&gt;Jawg&lt;/b&gt;Maps&lt;/a&gt; &#169; &lt;a href=&quot;https://www.openstreetmap.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;,
+            minZoom: 0,
+            maxZoom: 22,
+            subdomains: &#39;abcd&#39;,
+            accessToken: &#39;XtidJ8DmagbIe4pQL2VlUdo55zeODRpHFd2jaQjOEGOVDA5jgsXLyx3tAXirPjJd&#39;
+        });
+
+        var OpenStreetMap_Mapnik = L.tileLayer(&#39;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;, {
+            maxZoom: 19,
+            attribution: &#39;&#169; &lt;a href=&quot;https://www.openstreetmap.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+        });
+
+        //Tutorial Layer - Obtained from leaflet map
+        var tutorialLayer = L.tileLayer(&#39;http://tile.stamen.com/toner/{z}/{x}/{y}.png&#39;, {
+            attribution: &#39;Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.&#39;,
+            maxZoom: 18,
+            minZoom: 1
+        });
+        //Tutorial Layer - Obtained from assignment
+        var assigmentLayer = L.tileLayer(&#39;https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}&#39;, {
+            attribution: &#39;Map data &#169; &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors, &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/2.0/&quot;&gt;CC-BY-SA&lt;/a&gt;, Imagery &#169; &lt;a href=&quot;http://mapbox.com&quot;&gt;Mapbox&lt;/a&gt;&#39;,
+            maxZoom: 18,
+            id: &#39;mapbox.satellite&#39;,
+            accessToken: &#39;pk.eyJ1Ijoia2VpMTEwIiwiYSI6ImNqcmczdWJzNzFpOXk0NHA0ZDdwaThyZmgifQ.SN2dLbaBpbdlJyE5OCmndQ&#39;
+        });
+        //cartodb layer
+        var cartodb = L.tileLayer(&#39;https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png&#39;, {
+            attribution: &#39;Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.&#39;,
+            maxZoom: 11,
+            minZoom: 2
+        });
+
+        //map
+        var map = L.map(&#39;mymap&#39;, {
+            center: [39.2880922, -100.7323497],
+            zoom: 4,
+            layers: [Jawg_Matrix, geojson],
+            //heatmapLayer/add to map
+        });
+        map.fitBounds(geojson.getBounds());
+        var baseMaps = {
+            &quot;Jawg Matrix&quot;: Jawg_Matrix,
+            &quot;Carto DB&quot;: cartodb,
+            &quot;OSM Mapnik&quot;: OpenStreetMap_Mapnik
+        };
+        var overlayMaps = {
+            &quot;Forest Fires&quot;: geojson,
+
+        };
+
+        var legend = L.control({
+            position: &#39;bottomright&#39;
+        });
+        legend.onAdd = function(map) {
+
+            var div = L.DomUtil.create(&#39;div&#39;, &#39;legend&#39;),
+                grades = [40, 596, 3500, 10136, 115796]; // The break values to define the intervals of population, note we begin from 0 here
+
+            div.innerHTML = &#39;&lt;h6&gt;&lt;b&gt;Area Consumed (Ac)&lt;/b&gt;&lt;/h6&gt;&#39;; // The legend title (HTML-based), in this case it&#39;s Population Density 2011
+
+            // Loop through our the classes and generate a label with a color box for each interval.
+            // If you are creating a choropleth map, you DO NOT need to change lines below.
+            for (var i = 0; i &lt; grades.length; i++) {
+                div.innerHTML +=
+                    &#39;&lt;i style=&quot;background:&#39; + getColor(grades[i] + 1) + &#39;&quot;&gt;&lt;/i&gt;&#39; +
+                    grades[i] + (grades[i + 1] ? &#39; – &#39; + grades[i + 1] + &#39;&lt;/br&gt;&#39; : &#39;+&#39;);
+            }
+            div.innerHTML += &#39;&lt;/br&gt;&lt;span class=&quot;small text-muted&quot;&gt;Source : Esri &lt;a target = &quot;_blank&quot; href=&quot;https://storymaps.esri.com/stories/usa-wildfires/&quot;&gt;USA Wildfires&lt;/a&gt;&lt;/span&gt; &lt;br&gt;&#39;;
+            return div;
+        };
+        legend.addTo(map);
+
+        var titleDiv = L.control({
+            position: &#39;topright&#39;
+        });
+        titleDiv.onAdd = function(map) {
+            var titleText = L.DomUtil.create(&#39;div&#39;, &#39;titleDiv&#39;);
+            titleText.innerHTML = &#39;&lt;h6&gt;Lab Project : USA Wild Fires&lt;/h6&gt;&lt;br&gt;&lt;span class=&quot;small text-muted&quot;&gt;September and October 2020&lt;/span&gt;&#39;;
+            return titleText;
+        };
+        titleDiv.addTo(map);
+        // Removing the legend when the layer is removed
+        map.on(&#39;overlayremove&#39;, function(eventLayer) {
+            if (eventLayer.name == &#39;Forest Fires&#39;) { // We use the key/display name to refer to the layer
+                map.removeControl(legend); // legend is the variable name of the layer legend
+            }
+        });
+
+        // Adding the legend when the layer is added
+        map.on(&#39;overlayadd&#39;, function(eventLayer) {
+            if (eventLayer.name == &#39;Forest Fires&#39;) {
+                legend.addTo(map);
+            }
+        });
+        //Layer Control -- Legend
+        L.control.layers(baseMaps, overlayMaps).addTo(map);
+        //seacrh
+        var searchController = new L.Control.Search({
+            layer: geojson,
+            propertyName: &#39;Name&#39;,
+            textPlaceholder: &#39;Incident..&#39;,
+            zoom: 14,
+            initial: false
+        });
+        searchController.on(&#39;search:locationfound&#39;, function(event) {
+            event.layer.bindPopup(
+                &#39;&lt;div class=&quot;&quot;&gt;&#39; +
+                &#39;&lt;div class=&quot;card-header&quot;&gt;&#39; + event.layer.feature.properties.Name.toUpperCase() + &#39;&lt;/div&gt;&#39; +
+                &#39;&lt;div class=&quot;padi&quot;&gt;&#39; +
+                &#39;&lt;ul class=&quot;list-group list-group-flush&quot;&gt;&#39; +
+                &#39;&lt;li class=&quot;list-group-item&quot;&gt;Start Date: &#39; + event.layer.feature.properties.date + &#39;&lt;/li&gt;&#39; +
+                &#39;&lt;li class=&quot;list-group-item&quot;&gt;Area Consumed: &#39; + event.layer.feature.properties.area_ac + &#39; Ac&lt;/li&gt;&#39; +
+                &#39;&lt;li class=&quot;list-group-item&quot;&gt;Percentage Contained: &#39; + event.layer.feature.properties.perc_conta + &#39; %&lt;/li&gt;&#39; +
+                &#39;&lt;/ul&gt;&#39; +
+                &#39;&lt;/div&gt;&#39; +
+                &#39;&lt;/div&gt;&#39;
+            ).openPopup();
+            event.layer.getPopup().on(&#39;remove&#39;, function() {
+                map.fitBounds(geojson.getBounds());
+            });
+        });
+        map.addControl(searchController);
+        //Better Scale Plugin
+        L.control.betterscale().addTo(map);
+        //rose north arrow
+        var rose = L.control.rose(&#39;rose&#39;, {
+            position: &#39;bottomleft&#39;,
+            icon: &#39;inner&#39;,
+            iSize: &#39;xsmall&#39;,
+            opacity: 0.8
+        });
+        rose.addTo(map);
+        //Title
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+                                </code>
+                            </pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- body code goes here -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.3.1.js"></script>
+
+    <!--smooth scroll-->
+    <script>
+        $(document).ready(function() {
+            // Add smooth scrolling to all links
+            var nav = $('.navbar').outerHeight();
+            $("a").on('click', function(event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+                    // Store hash
+                    var hash = this.hash;
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        },
+                        800,
+                        function() {
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        }
+                    );
+                } // End if
+            });
+        });
+
+        $(window).on('scroll', function() {
+            var sections = $('section'),
+                nav = $('#sider'),
+                nav_height = nav.outerHeight(),
+                cur_pos = $(this).scrollTop();
+            sections.each(function() {
+                var top = $(this).offset().top,
+                    bottom = top + $(this).outerHeight();
+
+                if (cur_pos >= top && cur_pos <= bottom) {
+                    nav.find('a').removeClass('active');
+                    sections.removeClass('active');
+
+                    $(this).addClass('active');
+                    nav.find('a[href="#' + $(this).attr('id') + '"]').addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

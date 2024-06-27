@@ -2,73 +2,73 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Map</title>
-    <link href="prims/prism.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Map</title>
+  <link href="prims/prism.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">Leaflet Tutorial</a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavId">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Tutorials</a>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="1-basic-page.html">
-                                1 Introduction
-                            </a>
-                            <a class="dropdown-item" href="2-basic-map.html">
-                                2 Basic Map
-                            </a>
-                            <a class="dropdown-item" href="3-markers-and-popups.html">
-                                3 Markers and Popups
-                            </a>
-                            <a class="dropdown-item" href="4-polygons-and-circles.html">
-                                4 Polygons and Circles
-                            </a>
-                            <a class="dropdown-item" href="5-working-with-geojson.html">
-                                5 Working with GeoJSON
-                            </a>
-                            <a class="dropdown-item" href="6-user-interaction.html">
-                                6 User Interactions
-                            </a>
-                            <a class="dropdown-item" href="7-choropleth-map.html">
-                                7 choropleth map
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-light shadow">
     <div class="container">
-        <h4>Basic Map</h4>
-        <p><i>This tutorial use <a href="https://leafletjs.com/download.html" target="_blank">Leaflet</a> and <a
-                    href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank">Bootstrap
-                    5</a></i><br>Creating interactive maps is a key feature for many modern web applications, allowing
-            users to engage with
-            and visualize geographic data dynamically. By using Leaflet, a lightweight and open-source JavaScript
-            library, alongside Bootstrap, a widely-used framework for responsive and mobile-first web design, we can
-            build map interfaces that are both functional and visually appealing. In this tutorial, you'll learn how to
-            integrate Leaflet with Bootstrap to create a basic map with user location capabilities. We'll walk you
-            through structuring your HTML, including the necessary libraries, and implementing essential features such
-            as a navigation bar and interactive map elements, all designed to provide a seamless and responsive user
-            experience.</p>
-        <h5>1: Setup HTML with Bootstrap and Leaflet</h5>
-        <p>Below is the basic structure for the map, borrowed from the basic page tutorial</p>
-        <pre>
+      <a class="navbar-brand" href="../index.html">Leaflet Tutorial</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavId">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Tutorials</a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownId">
+              <a class="dropdown-item" href="1-basic-page.html">
+                1 Introduction
+              </a>
+              <a class="dropdown-item" href="2-basic-map.html">
+                2 Basic Map
+              </a>
+              <a class="dropdown-item" href="3-markers-and-popups.html">
+                3 Markers and Popups
+              </a>
+              <a class="dropdown-item" href="4-polygons-and-circles.html">
+                4 Polygons and Circles
+              </a>
+              <a class="dropdown-item" href="5-working-with-geojson.html">
+                5 Working with GeoJSON
+              </a>
+              <a class="dropdown-item" href="6-user-interaction.html">
+                6 User Interactions
+              </a>
+              <a class="dropdown-item" href="7-choropleth-map.html">
+                7 choropleth map
+              </a>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h4>Basic Map</h4>
+    <p><i>This tutorial use <a href="https://leafletjs.com/download.html" target="_blank">Leaflet</a> and <a
+          href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank">Bootstrap
+          5</a></i><br>Creating interactive maps is a key feature for many modern web applications, allowing
+      users to engage with
+      and visualize geographic data dynamically. By using Leaflet, a lightweight and open-source JavaScript
+      library, alongside Bootstrap, a widely-used framework for responsive and mobile-first web design, we can
+      build map interfaces that are both functional and visually appealing. In this tutorial, you'll learn how to
+      integrate Leaflet with Bootstrap to create a basic map with user location capabilities. We'll walk you
+      through structuring your HTML, including the necessary libraries, and implementing essential features such
+      as a navigation bar and interactive map elements, all designed to provide a seamless and responsive user
+      experience.</p>
+    <h5>1: Setup HTML with Bootstrap and Leaflet</h5>
+    <p>Below is the basic structure for the map, borrowed from the basic page tutorial</p>
+    <pre>
             <code class="language-html">
 &lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -107,27 +107,27 @@
 &lt;/nav&gt;    
             </code>
         </pre>
-        <h5>2: Create the Map Container</h5>
-        <p>Add a container for the map that will take up the remaining space of the page to display a map. In leaflet
-            div &lt;div id=&quot;map&quot;&gt; is used to instruct where to rende a map. In the event where your are
-            unable to see the map always verify if the map div tag has a heigh defined. The style function
-            cal(100%-56px) sets the height of the map to total height of browser windows- height of navbar</p>
-        <pre>
+    <h5>2: Create the Map Container</h5>
+    <p>Add a container for the map that will take up the remaining space of the page to display a map. In leaflet
+      div &lt;div id=&quot;map&quot;&gt; is used to instruct where to rende a map. In the event where your are
+      unable to see the map always verify if the map div tag has a heigh defined. The style function
+      cal(100%-56px) sets the height of the map to total height of browser windows- height of navbar</p>
+    <pre>
             <code class="language-html">
 &lt;div id=&quot;map&quot; style=&quot;height:calc(100% - 56px);&quot;&gt;&lt;/div&gt;
             </code>
         </pre>
-        <h5>4: Include Bootstrap and Leaflet JavaScript Files</h5>
-        <p>Including the necessary JavaScript files for Bootstrap and Leaflet at the bottom of the body is crucial for
-            ensuring that the page functions correctly. Bootstrap requires JavaScript to handle interactive components
-            like modals, dropdowns, and collapsible elements. By placing the Bootstrap JavaScript files at the bottom,
-            we ensure that the HTML elements are fully loaded before the JavaScript attempts to interact with them,
-            preventing potential errors. Similarly, Leaflet, which powers the map, relies on its JavaScript library to
-            create and manipulate the map elements. Adding the Leaflet script at the end of the body ensures
-            that the map container is already rendered on the page before the script runs, ensuring that the map
-            initializes properly. This approach not only avoids errors but also improves the loading performance of the
-            webpage by allowing the browser to render the HTML content first.</p>
-        <pre>
+    <h5>4: Include Bootstrap and Leaflet JavaScript Files</h5>
+    <p>Including the necessary JavaScript files for Bootstrap and Leaflet at the bottom of the body is crucial for
+      ensuring that the page functions correctly. Bootstrap requires JavaScript to handle interactive components
+      like modals, dropdowns, and collapsible elements. By placing the Bootstrap JavaScript files at the bottom,
+      we ensure that the HTML elements are fully loaded before the JavaScript attempts to interact with them,
+      preventing potential errors. Similarly, Leaflet, which powers the map, relies on its JavaScript library to
+      create and manipulate the map elements. Adding the Leaflet script at the end of the body ensures
+      that the map container is already rendered on the page before the script runs, ensuring that the map
+      initializes properly. This approach not only avoids errors but also improves the loading performance of the
+      webpage by allowing the browser to render the HTML content first.</p>
+    <pre>
             <code class="language-html">
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://stackpath.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
@@ -165,32 +165,32 @@
 &lt;/html&gt;
             </code>
         </pre>
-        <h5>5: Expected Output</h5>
-        <p>The expected output of this tutorial is shown below</p> 
-        <iframe src="2-basic-map-index.html" style="width: 100%; height: 500px; border: 1px solid black;" title="Iframe Example"></iframe>
-        <h5>6: Conclusion</h5>
-        <p>
-            By following this tutorial, you have learned how to integrate Leaflet with Bootstrap to create a basic
-            interactive map that includes user location capabilities. This powerful combination allows you to build
-            responsive and mobile-friendly web applications that can dynamically display and interact with geographic
-            data. The techniques covered here, from structuring HTML to adding a navigation bar and implementing map
-            functionalities, provide a solid foundation for creating more complex map interfaces in your projects.
+    <h5>5: Expected Output</h5>
+    <p>The expected output of this tutorial is shown below</p>
+    <iframe src="2-basic-map-index.html" style="width: 100%; height: 500px; border: 1px solid black;"
+      title="Iframe Example"></iframe>
+    <h5>6: Conclusion</h5>
+    <p>
+      By following this tutorial, you have learned how to integrate Leaflet with Bootstrap to create a basic
+      interactive map that includes user location capabilities. This powerful combination allows you to build
+      responsive and mobile-friendly web applications that can dynamically display and interact with geographic
+      data. The techniques covered here, from structuring HTML to adding a navigation bar and implementing map
+      functionalities, provide a solid foundation for creating more complex map interfaces in your projects.
 
-            For additional base maps and more customization options, you can explore <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">the Leaflet Providers library</a>,
-            which offers a variety of map tiles and services to enhance your mapping applications.
-        </p>
-    </div>
+      For additional base maps and more customization options, you can explore <a
+        href="https://leaflet-extras.github.io/leaflet-providers/preview/">the Leaflet Providers library</a>,
+      which offers a variety of map tiles and services to enhance your mapping applications.
+    </p>
+  </div>
 
-    <!-- (Optional) - Place this js code after initializing bootstrap.min.js or bootstrap.bundle.min.js -->
-    <script>
-        var triggerEl = document.querySelector("#navId a");
-        bootstrap.Tab.getInstance(triggerEl).show(); // Select tab by name
-    </script>
+  <div class="text-center shadow p-2">
+    &copy; Kengeospatialist | <a href="https://geomodelconsultants.co.ke" target="_blank">Geomodel Consultants</a>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script src="prims/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="prims/prism.js"></script>
 </body>
 
 </html>
