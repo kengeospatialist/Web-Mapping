@@ -8,49 +8,147 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <nav
-        class="navbar navbar-expand-sm navbar-light bg-light"
-    >
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container">
-            <a class="navbar-brand" href="#">Leaflet Tutorials</a>
-            <button
-                class="navbar-toggler d-lg-none"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapsibleNavId"
-                aria-controls="collapsibleNavId"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
+            <a class="navbar-brand" href="index.html">Leaflet Tutorial</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav me-auto mt-2 mt-lg-0 ">
-                
+            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavId">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="dropdownId"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            >Tutorials</a
-                        >
-                        <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="1-basic-map.html">
-                                1 Basic Map
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Tutorials</a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="1-basic-page.html">
+                                1 Introduction
                             </a>
-                            <a class="dropdown-item" href="#">
-                                Action 2
+                            <a class="dropdown-item" href="2-basic-map.html">
+                                2 Basic Map
+                            </a>
+                            <a class="dropdown-item" href="3-markers-and-popups.html">
+                                3 Markers and Popups
+                            </a>
+                            <a class="dropdown-item" href="4-polygons-and-circles.html">
+                                4 Polygons and Circles
+                            </a>
+                            <a class="dropdown-item" href="5-working-with-geojson.html">
+                                5 Working with GeoJSON
+                            </a>
+                            <a class="dropdown-item" href="6-user-interaction.html">
+                                6 User Interactions
+                            </a>
+                            <a class="dropdown-item" href="7-choropleth-map.html">
+                                7 choropleth map
                             </a>
                         </div>
                     </li>
                 </ul>
-                
+
             </div>
         </div>
     </nav>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">1 Introduction</h5>
+                        <p class="card-text">Get started with Leaflet and learn the basics of interactive maps.</p>
+                    </div>
+                    <div class="card-footer border-top-0 bg-white p-1">
+                        <a href="1-basic-page.html" class="btn btn-sm btn-primary stretched-link">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">2 Basic Map</h5>
+                        <p class="card-text">Create a simple Leaflet map and customize its appearance.</p>
+                    </div>
+                    <div class="card-footer border-top-0 bg-white p-1">
+                        <a href="2-basic-map.html" class="btn btn-sm btn-primary stretched-link">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">3 Markers and Popups</h5>
+                        <p class="card-text">Add markers and popups to your Leaflet map for interactive information.</p>
+                    </div>
+                    <div class="card-footer border-top-0 bg-white p-1">
+                        <a href="3-markers-and-popups.htm" class="btn btn-sm btn-primary stretched-link">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">4 Polygons and Circles</h5>
+                        <p class="card-text">Draw polygons and circles on your Leaflet map to highlight areas.</p>
+                    </div>
+                    <div class="card-footer border-top-0 bg-white p-1">
+                        <a href="4-polygons-and-circles.html" class="btn btn-sm btn-primary stretched-link">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">5 Working with GeoJSON</h5>
+                        <p class="card-text">Utilize GeoJSON data to create and display geographical features on your map.</p>
+                    </div>
+                    <div class="card-footer border-top-0 bg-white p-1">
+                        <a href="5-working-with-geojson.html" class="btn btn-sm btn-primary stretched-link">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">6 User Interactions</h5>
+                        <p class="card-text">Implement user interactions such as drawing, measuring, and geocoding on your map.</p>
+                    </div>
+                    <div class="card-footer border-top-0 bg-white p-1">
+                        <a href="6-user-interaction.html" class="btn btn-sm btn-primary stretched-link">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">7 Choropleth Map</h5>
+                        <p class="card-text">Create a choropleth map with colored regions based on data values.</p>
+                    </div>
+                    <div class="card-footer border-top-0 bg-white p-1">
+                        <a href="7-choropleth-map.html" class="btn btn-sm btn-primary stretched-link">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">8 USA Crime Trends</h5>
+                        <p class="card-text">This project intend to map and analyze crime change from 1999 to 2019 in the United States..</p>
+                    </div>
+                    <div class="card-footer border-top-0 bg-white p-1">
+                        <a href="7-choropleth-map.html" class="btn btn-sm btn-primary stretched-link">View Tutorial</a>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
     
     
     <!-- (Optional) - Place this js code after initializing bootstrap.min.js or bootstrap.bundle.min.js -->
